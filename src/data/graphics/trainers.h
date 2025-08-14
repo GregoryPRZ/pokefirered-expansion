@@ -455,8 +455,8 @@ const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steve
 const u8 gTrainerBackPic_RSBrendan[] = INCBIN_U8("graphics/trainers/back_pics/ruby_sapphire_brendan_back_pic.4bpp");
 const u8 gTrainerBackPic_RSMay[] = INCBIN_U8("graphics/trainers/back_pics/ruby_sapphire_may_back_pic.4bpp");
 
-const u16 gTrainerPalette_RedBackPic[] = INCBIN_U16("graphics/trainers/palettes/red_back_pic.gbapal");
-const u16 gTrainerPalette_LeafBackPic[] = INCBIN_U16("graphics/trainers/palettes/leaf_back_pic.gbapal");
+const u16 gTrainerPalette_RedBackPic[] = INCBIN_U16("graphics/trainers/back_pics/red_back_pic.gbapal");
+const u16 gTrainerPalette_LeafBackPic[] = INCBIN_U16("graphics/trainers/back_pics/leaf_back_pic.gbapal");
 const u16 gTrainerPalette_PokedudeBackPic[] = INCBIN_U16("graphics/trainers/palettes/pokedude_back_pic.gbapal");
 const u16 gTrainerPalette_OldManBackPic[] = INCBIN_U16("graphics/trainers/palettes/old_man_back_pic.gbapal");
 const u16 gTrainerPalette_Steven[] = INCBIN_U16("graphics/trainers/palettes/steven.gbapal");
