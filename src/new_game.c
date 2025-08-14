@@ -2,6 +2,7 @@
 #include "gflib.h"
 #include "random.h"
 #include "overworld.h"
+#include "constants/flags.h"
 #include "constants/maps.h"
 #include "load_save.h"
 #include "item_menu.h"
@@ -160,6 +161,9 @@ void NewGameInitData(void)
     ResetTrainerTowerResults();
     ResetItemFlags();
     ResetDexNav();
+    FlagSet(FLAG_DEXNAV_GET);
+    FlagSet(FLAG_DEXNAV_DETECTOR);
+    FlagSet(FLAG_SYS_B_DASH);
 }
 
 static void ResetMiniGamesResults(void)
