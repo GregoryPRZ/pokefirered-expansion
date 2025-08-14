@@ -15,6 +15,37 @@
 #define FANFARE_POKE_FLUTE          11
 #define FANFARE_KEY_ITEM            12
 #define FANFARE_DEX_EVAL            13
+#define FANFARE_HG_OBTAIN_KEY_ITEM       14
+#define FANFARE_HG_LEVEL_UP              15
+#define FANFARE_HG_HEAL                  16
+#define FANFARE_HG_DEX_RATING_1          17
+#define FANFARE_HG_DEX_RATING_2          18
+#define FANFARE_HG_DEX_RATING_3          19
+#define FANFARE_HG_DEX_RATING_4          20
+#define FANFARE_HG_DEX_RATING_5          21
+#define FANFARE_HG_DEX_RATING_6          22
+#define FANFARE_HG_RECEIVE_EGG           23
+#define FANFARE_HG_OBTAIN_ITEM           24
+#define FANFARE_HG_EVOLVED               25
+#define FANFARE_HG_OBTAIN_BADGE          26
+#define FANFARE_HG_OBTAIN_TMHM           27
+#define FANFARE_HG_VOLTORB_FLIP_1        28
+#define FANFARE_HG_VOLTORB_FLIP_2        29
+#define FANFARE_HG_ACCESSORY             30
+#define FANFARE_HG_REGISTER_POKEGEAR     31
+#define FANFARE_HG_OBTAIN_BERRY          32
+#define FANFARE_HG_RECEIVE_POKEMON       33
+#define FANFARE_HG_MOVE_DELETED          34
+#define FANFARE_HG_THIRD_PLACE           35
+#define FANFARE_HG_SECOND_PLACE          36
+#define FANFARE_HG_FIRST_PLACE           37
+#define FANFARE_HG_POKEATHLON_NEW        38
+#define FANFARE_HG_WINNING_POKEATHLON    39
+#define FANFARE_HG_OBTAIN_B_POINTS       40
+#define FANFARE_HG_OBTAIN_ARCADE_POINTS  41
+#define FANFARE_HG_OBTAIN_CASTLE_POINTS  42
+#define FANFARE_HG_CLEAR_MINIGAME        43
+#define FANFARE_HG_PARTNER               44
 
 #define CRY_MODE_NORMAL        0 // Default
 #define CRY_MODE_DOUBLES       1 // Shortened cry for double battles
