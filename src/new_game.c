@@ -164,6 +164,7 @@ void NewGameInitData(void)
     FlagSet(FLAG_DEXNAV_GET);
     FlagSet(FLAG_DEXNAV_DETECTOR);
     FlagSet(FLAG_SYS_B_DASH);
+    gSaveBlock1Ptr->autoRun = FALSE;
 }
 
 static void ResetMiniGamesResults(void)
