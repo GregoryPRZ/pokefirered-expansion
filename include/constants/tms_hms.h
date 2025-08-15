@@ -51,7 +51,57 @@
     F(STEEL_WING) \
     F(SKILL_SWAP) \
     F(SNATCH) \
-    F(OVERHEAT)
+    F(OVERHEAT) \
+    F(FLAME_CHARGE) \
+    F(DRAIN_KISS) \
+    F(ICY_WIND) \
+    F(ACROBATICS) \
+    F(STRUGGLE_BUG) \
+    F(TRAILBLAZE) \
+    F(CHILLING_WATER) \
+    F(CHARGE_BEAM) \
+    F(BULLDOZE) \
+    F(HEX) \
+    F(DRAGON_TAIL) \
+    F(VOLT_SWITCH) \
+    F(SHADOW_CLAW) \
+    F(U_TURN) \
+    F(AIR_SLASH) \
+    F(DAZZLING_GLEAM) \
+    F(POISON_JAB) \
+    F(FLASH_CANNON) \
+    F(DARK_PULSE) \
+    F(IRON_HEAD) \
+    F(POWER_GEM) \
+    F(GUNK_SHOT) \
+    F(X_SCISSOR) \
+    F(DRILL_RUN) \
+    F(CRUNCH) \
+    F(LIQUIDATION) \
+    F(AURA_SPHERE) \
+    F(STEALTH_ROCK) \
+    F(TAILWIND) \
+    F(DRAGON_PULSE) \
+    F(HEAT_WAVE) \
+    F(ENERGY_BALL) \
+    F(PLAY_ROUGH) \
+    F(EARTH_POWER) \
+    F(SWORDS_DANCE) \
+    F(NASTY_PLOT) \
+    F(HYDRO_PUMP) \
+    F(WILD_CHARGE) \
+    F(ROCK_SLIDE) \
+    F(STONE_EDGE) \
+    F(PHANTOM_FORCE) \
+    F(OUTRAGE) \
+    F(FOCUS_BLAST) \
+    F(LEAF_STORM) \
+    F(HURRICANE) \
+    F(TRICK_ROOM) \
+    F(BUG_BUZZ) \
+    F(CLOSE_COMBAT) \
+    F(BRAVE_BIRD) \
+    F(FLARE_BLITZ)
 
 #define FOREACH_HM(F) \
     F(CUT) \

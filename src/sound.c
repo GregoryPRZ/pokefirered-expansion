@@ -115,9 +115,9 @@ u16 HGSSMusicHandler(u16 songNum) {
         case MUS_EVOLUTION:
             return MUS_HG_EVOLUTION;
         case MUS_RS_VS_GYM_LEADER:
-            return MUS_HG_VS_GYM_LEADER;
+            return MUS_HG_VS_FRONTIER_BRAIN;
         case MUS_RS_VS_TRAINER:
-            return MUS_HG_VS_TRAINER;
+            return MUS_HG_VS_ROCKET;
         case MUS_SCHOOL:
             return MUS_HG_LYRA;
         case MUS_SLOTS_JACKPOT:
