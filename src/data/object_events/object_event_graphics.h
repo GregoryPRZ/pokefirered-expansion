@@ -374,3 +374,22 @@ const u16 gObjectEventPal_StrangeBall[] = INCBIN_U16("graphics/object_events/pic
 
 const u32 gFieldEffectObjectPic_CaveDust[] = INCBIN_U32("graphics/field_effects/pics/cave_dust.4bpp");
 const u16 gFieldEffectObjectPalette_CaveDust[] = INCBIN_U16("graphics/field_effects/palettes/cave_dust.gbapal");
+
+const u16 gObjectEventPal_Youngster[] = INCBIN_U16("graphics/object_events/palettes/youngster.gbapal");
+const u16 gObjectEventPal_BugCatcher[] = INCBIN_U16("graphics/object_events/palettes/bug_catcher.gbapal");
+const u16 gObjectEventPal_Camper[] = INCBIN_U16("graphics/object_events/palettes/camper.gbapal");
+const u16 gObjectEventPal_Picnicker[] = INCBIN_U16("graphics/object_events/palettes/picnicker.gbapal");
+const u16 gObjectEventPal_OldMan2[] = INCBIN_U16("graphics/object_events/palettes/old_man_2.gbapal");
+const u16 gObjectEventPal_OldWoman[] = INCBIN_U16("graphics/object_events/palettes/old_woman.gbapal");
+const u16 gObjectEventPal_OldMan1[] = INCBIN_U16("graphics/object_events/palettes/old_man_1.gbapal");
+const u16 gObjectEventPal_BaldingMan[] = INCBIN_U16("graphics/object_events/palettes/balding_man.gbapal");
+const u16 gObjectEventPal_FatMan[] = INCBIN_U16("graphics/object_events/palettes/fat_man.gbapal");
+const u16 gObjectEventPal_Man[] = INCBIN_U16("graphics/object_events/palettes/man.gbapal");
+const u16 gObjectEventPal_Clerk[] = INCBIN_U16("graphics/object_events/palettes/clerk.gbapal");
+const u16 gObjectEventPal_Fisher[] = INCBIN_U16("graphics/object_events/palettes/fisher.gbapal");
+const u16 gObjectEventPal_Scientist[] = INCBIN_U16("graphics/object_events/palettes/scientist.gbapal");
+const u16 gObjectEventPal_SuperNerd[] = INCBIN_U16("graphics/object_events/palettes/super_nerd.gbapal");
+const u16 gObjectEventPal_Hiker[] = INCBIN_U16("graphics/object_events/palettes/hiker.gbapal");
+const u16 gObjectEventPal_Sailor[] = INCBIN_U16("graphics/object_events/palettes/sailor.gbapal");
+const u16 gObjectEventPal_Gentleman[] = INCBIN_U16("graphics/object_events/palettes/gentleman.gbapal");
+const u16 gObjectEventPal_Lass[] = INCBIN_U16("graphics/object_events/palettes/lass.gbapal");
