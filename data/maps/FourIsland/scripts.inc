@@ -28,7 +28,7 @@ FourIsland_EventScript_RivalScene::
 	textcolor NPC_TEXT_COLOR_MALE
 	applymovement LOCALID_FOUR_ISLAND_RIVAL, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
-	playbgm MUS_ENCOUNTER_RIVAL, 0
+	playbgm MUS_HG_ENCOUNTER_RIVAL, 0
 	applymovement LOCALID_FOUR_ISLAND_RIVAL, Common_Movement_ExclamationMark
 	waitmovement 0
 	applymovement LOCALID_FOUR_ISLAND_RIVAL, Common_Movement_Delay48
@@ -103,7 +103,7 @@ FourIsland_EventScript_DaycareReceivedEgg::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	message DayCare_Text_ReceivedEgg
 	call EventScript_RestorePrevTextColor
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_OBTAIN_EGG
 	waitfanfare
 	waitbuttonpress
 	msgbox DayCare_Text_TakeGoodCareOfIt

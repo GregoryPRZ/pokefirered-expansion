@@ -128,7 +128,7 @@ OneIsland_PokemonCenter_1F_EventScript_IntroducePlayerNotChamp::
 
 OneIsland_PokemonCenter_1F_EventScript_ReceiveTownMapPage::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_OBTAIN_KEY_ITEM
+	playfanfare MUS_HG_OBTAIN_KEY_ITEM
 	message OneIsland_PokemonCenter_1F_Text_ReceivedExtraPageForTownMap
 	waitmessage
 	waitfanfare
@@ -243,7 +243,7 @@ OneIsland_PokemonCenter_1F_EventScript_CelioJustGivenSapphire::
 
 OneIsland_PokemonCenter_1F_EventScript_GiveCelioSapphire::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_OBTAIN_TMHM
+	playfanfare MUS_HG_OBTAIN_TMHM
 	message OneIsland_PokemonCenter_1F_Text_HandedSapphireToCelio
 	waitmessage
 	waitfanfare
@@ -289,7 +289,7 @@ OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPass::
 OneIsland_PokemonCenter_1F_EventScript_GiveCelioRuby::
 	msgbox OneIsland_PokemonCenter_1F_Text_OhThats
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_OBTAIN_TMHM
+	playfanfare MUS_HG_OBTAIN_TMHM
 	message OneIsland_PokemonCenter_1F_Text_HandedRubyToCelio
 	waitmessage
 	waitfanfare
@@ -322,11 +322,11 @@ OneIsland_PokemonCenter_1F_EventScript_GiveRainbowPass::
 	additem ITEM_RAINBOW_PASS
 	setflag FLAG_SYS_SEVII_MAP_4567
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_OBTAIN_KEY_ITEM
+	playfanfare MUS_HG_OBTAIN_KEY_ITEM
 	message OneIsland_PokemonCenter_1F_Text_ReturnedTriPassForRainbowPass
 	waitmessage
 	waitfanfare
-	playfanfare MUS_OBTAIN_KEY_ITEM
+	playfanfare MUS_HG_OBTAIN_KEY_ITEM
 	message OneIsland_PokemonCenter_1F_Text_ObtainedExtraMapPage
 	waitmessage
 	waitfanfare

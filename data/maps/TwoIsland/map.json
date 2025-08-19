@@ -2,7 +2,7 @@
   "id": "MAP_TWO_ISLAND",
   "name": "TwoIsland",
   "layout": "LAYOUT_TWO_ISLAND",
-  "music": "MUS_SEVII_123",
+  "music": "MUS_HG_CHERRYGROVE",
   "region_map_section": "MAPSEC_TWO_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -178,9 +178,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

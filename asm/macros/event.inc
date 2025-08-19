@@ -1980,7 +1980,7 @@
 
 	@ Prints the provided message after playing the fanfare music (can only be MUS_LEVEL_UP or MUS_OBTAIN_KEY_ITEM).
 	@ It then prints the message shown by using putitemaway.
-	.macro msgreceiveditem msg:req, item:req, amount=1, fanfare=MUS_LEVEL_UP
+	.macro msgreceiveditem msg:req, item:req, amount=1, fanfare=MUS_HG_OBTAIN_ITEM
 	loadword 0, \msg
 	setorcopyvar VAR_0x8000, \item
 	setorcopyvar VAR_0x8001, \amount
@@ -1989,7 +1989,7 @@
 	.endm
 
 	@ Adds the specified item to the bag, then prints a message with fanfare. See description of msgreceiveditem.
-	.macro giveitem_msg msg:req, item:req, amount=1, fanfare=MUS_LEVEL_UP
+	.macro giveitem_msg msg:req, item:req, amount=1, fanfare=MUS_HG_OBTAIN_ITEM
 	additem \item, \amount
 	msgreceiveditem \msg, \item, \amount, \fanfare
 	.endm

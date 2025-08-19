@@ -69,7 +69,7 @@ TwoIsland_JoyfulGameCorner_EventScript_HelpFindLostelleScene::
 	waitse
 	applymovement LOCALID_PLAYER, TwoIsland_JoyfulGameCorner_Movement_PlayerFaceDaddy
 	waitmovement 0
-	playbgm MUS_ENCOUNTER_BOY, 0
+	playbgm MUS_HG_ENCOUNTER_BOY_1, 0
 	addobject LOCALID_JOYFUL_GAME_CORNER_BIKER
 	applymovement LOCALID_JOYFUL_GAME_CORNER_BIKER, TwoIsland_JoyfulGameCorner_Movement_BikerLookAround
 	waitmovement 0
@@ -151,7 +151,7 @@ TwoIsland_JoyfulGameCorner_EventScript_GiveDaddyMeteorite::
 	msgbox TwoIsland_JoyfulGameCorner_Text_ThisIsForMe
 	setvar VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 2
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_OBTAIN_TMHM
+	playfanfare MUS_HG_OBTAIN_TMHM
 	message TwoIsland_JoyfulGameCorner_Text_HandedMeteoriteToLostellesDaddy
 	waitmessage
 	waitfanfare

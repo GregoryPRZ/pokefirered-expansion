@@ -422,7 +422,7 @@ bool32 HandleMysteryGiftOrEReaderSetup(s32 isEReader)
     case 3:
         ShowBg(0);
         ShowBg(3);
-        PlayBGM(MUS_MYSTERY_GIFT);
+        PlayBGM(MUS_HG_MYSTERY_GIFT);
         SetVBlankCallback(VBlankCB_MysteryGiftEReader);
         EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_VCOUNT | INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
         return TRUE;
@@ -931,7 +931,7 @@ static bool32 PrintSuccessMessage(u8 * state, const u8 * msg, u16 * timer)
     case 0:
         if (msg != NULL)
             AddTextPrinterToWindow1(msg);
-        PlayFanfare(MUS_OBTAIN_ITEM);
+        PlayFanfare(MUS_HG_OBTAIN_ITEM);
         *timer = 0;
         (*state)++;
         break;

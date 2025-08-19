@@ -1096,7 +1096,7 @@ static void PokedudeAction_PrintVoiceoverMessage(u32 battler)
             if (gPokedudeBattlerStates[battler]->msg_idx == STRINGID_PKMNGAINEDEXP)
             {
                 BattleStopLowHpSound();
-                PlayBGM(MUS_VICTORY_WILD);
+                PlayBGM(MUS_HG_VICTORY_WILD);
             }
             gBattle_BG0_Y = gPokedudeBattlerStates[battler]->saved_bg0y;
             BtlCtrl_RemoveVoiceoverMessageFrame();
@@ -1169,7 +1169,7 @@ static void PokedudeAction_PrintMessageWithHealthboxPals(u32 battler)
             if (gPokedudeBattlerStates[battler]->msg_idx == STRINGID_PKMNGAINEDEXP)
             {
                 BattleStopLowHpSound();
-                PlayBGM(MUS_VICTORY_WILD);
+                PlayBGM(MUS_HG_VICTORY_WILD);
             }
             FreeHealthboxPalsForLevelUp(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
             BtlCtrl_RemoveVoiceoverMessageFrame();

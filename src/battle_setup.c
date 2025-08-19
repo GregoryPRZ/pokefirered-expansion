@@ -14,6 +14,7 @@
 #include "fieldmap.h"
 #include "follower_npc.h"
 #include "random.h"
+#include "pokemon.h"
 // #include "starter_choose.h"
 #include "script_pokemon_util.h"
 #include "palette.h"
@@ -276,7 +277,7 @@ void BattleSetup_StartRoamerBattle(void)
     StopPlayerAvatar();
     gMain.savedCallback = CB2_EndWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_ROAMER;
-    CreateBattleStartTask(GetWildBattleTransition(), MUS_VS_LEGEND);
+    CreateBattleStartTask(GetWildBattleTransition(), GetBattleBGM());
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     // IncrementDailyWildBattles();
@@ -411,27 +412,11 @@ void BattleSetup_StartLegendaryBattle(void)
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_LEGENDARY;
     species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES);
-    switch (species)
-    {
-    case SPECIES_MEWTWO:
-    case SPECIES_MEWTWO_MEGA_X:
-    case SPECIES_MEWTWO_MEGA_Y:
-        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_VS_MEWTWO);
-        break;
-    case SPECIES_DEOXYS_NORMAL:
-    case SPECIES_DEOXYS_ATTACK:
-    case SPECIES_DEOXYS_DEFENSE:
-    case SPECIES_DEOXYS_SPEED:
-        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_VS_DEOXYS);
-        break;
-    default:
-        if (gSpeciesInfo[species].isLegendary || gSpeciesInfo[species].isMythical)
-            CreateBattleStartTask(B_TRANSITION_BLUR, MUS_VS_LEGEND);
-        else
-            CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RS_VS_TRAINER);
-        break;
+    if (gSpeciesInfo[species].isLegendary || gSpeciesInfo[species].isMythical){
+        CreateBattleStartTask(B_TRANSITION_BLUR,  GetBattleBGM());
+    } else {
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RS_VS_TRAINER);
     }
-
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     // IncrementDailyWildBattles();
@@ -444,7 +429,7 @@ void StartGroudonKyogreBattle(void)
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_LEGENDARY;
 
-    CreateBattleStartTask(B_TRANSITION_ANGLED_WIPES, MUS_RS_VS_TRAINER);
+    CreateBattleStartTask(B_TRANSITION_ANGLED_WIPES, MUS_HG_VS_KYOGRE_GROUDON);
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
@@ -461,7 +446,7 @@ void StartRegiBattle(void)
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_LEGENDARY;
 
-    CreateBattleStartTask(transitionId, MUS_RS_VS_TRAINER);
+    CreateBattleStartTask(transitionId, MUS_HG_VS_KYOGRE_GROUDON);
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
@@ -1171,22 +1156,36 @@ void PlayTrainerEncounterMusic(void)
         switch (GetTrainerEncounterMusicId(trainerId))
         {
         case TRAINER_ENCOUNTER_MUSIC_FEMALE:
+            music = MUS_HG_ENCOUNTER_GIRL_2;
+            break; 
         case TRAINER_ENCOUNTER_MUSIC_GIRL:
         case TRAINER_ENCOUNTER_MUSIC_TWINS:
-            music = MUS_ENCOUNTER_GIRL;
+            music = MUS_HG_ENCOUNTER_GIRL_1;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_MALE:
-        case TRAINER_ENCOUNTER_MUSIC_INTENSE:
-        case TRAINER_ENCOUNTER_MUSIC_COOL:
         case TRAINER_ENCOUNTER_MUSIC_SWIMMER:
-        case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
-        case TRAINER_ENCOUNTER_MUSIC_HIKER:
-        case TRAINER_ENCOUNTER_MUSIC_INTERVIEWER:
-        case TRAINER_ENCOUNTER_MUSIC_RICH:
-            music = MUS_ENCOUNTER_BOY;
+        case TRAINER_ENCOUNTER_MUSIC_MALE:
+            music = MUS_HG_ENCOUNTER_BOY_1;
             break;
+        case TRAINER_ENCOUNTER_MUSIC_INTENSE:
+            music = MUS_HG_ENCOUNTER_SAGE;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_RICH:
+        case TRAINER_ENCOUNTER_MUSIC_COOL:
+                music = MUS_HG_ENCOUNTER_BOY_2;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_HIKER:
+            music = MUS_HG_ENCOUNTER_SUSPICIOUS_2;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS:
+            music = MUS_HG_ENCOUNTER_SUSPICIOUS_1;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_AQUA:
+            music = MUS_HG_ENCOUNTER_ROCKET;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
+        case TRAINER_ENCOUNTER_MUSIC_INTERVIEWER:
         default:
-            music = MUS_ENCOUNTER_ROCKET;
+            music = MUS_HG_ENCOUNTER_KIMONO_GIRL;
             break;
         }
         PlayNewMapMusic(music);

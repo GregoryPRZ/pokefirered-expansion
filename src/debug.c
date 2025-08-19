@@ -3025,7 +3025,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
     {
         DestroyItemIcon(taskId);
 
-        PlaySE(MUS_LEVEL_UP);
+        PlaySE(MUS_HG_LEVEL_UP);
         AddBagItem(itemId, gTasks[taskId].tInput);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3213,7 +3213,7 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
         if (gTasks[taskId].tIsComplex == FALSE)
         {
-            PlaySE(MUS_LEVEL_UP);
+            PlaySE(MUS_HG_LEVEL_UP);
             ScriptGiveMon(sDebugMonData->species, gTasks[taskId].tInput, ITEM_NONE);
             // Set flag for user convenience
             FlagSet(FLAG_SYS_POKEMON_GET);
@@ -3658,7 +3658,7 @@ static void DebugAction_Give_Pokemon_Move(u8 taskId)
             gTasks[taskId].tInput = 0;
             gTasks[taskId].tDigit = 0;
 
-            PlaySE(MUS_LEVEL_UP);
+            PlaySE(MUS_HG_LEVEL_UP);
             gTasks[taskId].func = DebugAction_Give_Pokemon_ComplexCreateMon;
         }
     }
@@ -3953,7 +3953,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId)
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
                 if (!spaceAvailable)
-                    PlayBGM(MUS_MYSTERY_GIFT);
+                    PlayBGM(MUS_HG_MYSTERY_GIFT);
                 CreateBoxMon(&boxMon, species, 100, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
                 gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
                 species = (species < NUM_SPECIES - 1) ? species + 1 : 1;
@@ -4043,7 +4043,7 @@ static void DebugAction_PCBag_AccessPC(u8 taskId)
 
 static void DebugAction_PCBag_ClearBag(u8 taskId)
 {
-    PlaySE(MUS_LEVEL_UP);
+    PlaySE(MUS_HG_LEVEL_UP);
     ClearBag();
 }
 

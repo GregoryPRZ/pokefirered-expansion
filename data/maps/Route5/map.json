@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE5",
   "name": "Route5",
   "layout": "LAYOUT_ROUTE5",
-  "music": "MUS_ROUTE3",
+  "music": "MUS_HG_ROUTE3",
   "region_map_section": "MAPSEC_ROUTE_5",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -25,9 +25,7 @@
       "direction": "down"
     }
   ],
-  "object_events": [
-
-  ],
+  "object_events": [],
   "warp_events": [
     {
       "x": 31,
@@ -58,9 +56,7 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

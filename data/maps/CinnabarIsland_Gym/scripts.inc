@@ -214,7 +214,7 @@ CinnabarIsland_Gym_EventScript_Quiz1::
 	end
 
 CinnabarIsland_Gym_EventScript_CorrectAnswer::
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_LEVEL_UP
 	waitfanfare
 	msgbox CinnabarIsland_Gym_Text_CorrectGoOnThrough
 	return

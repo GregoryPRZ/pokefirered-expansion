@@ -2,7 +2,7 @@
   "id": "MAP_SSANNE_B1F_CORRIDOR",
   "name": "SSAnne_B1F_Corridor",
   "layout": "LAYOUT_SSANNE_B1F_CORRIDOR",
-  "music": "MUS_SS_ANNE",
+  "music": "MUS_HG_SS_AQUA",
   "region_map_section": "MAPSEC_S_S_ANNE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -14,9 +14,7 @@
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
-  "object_events": [
-
-  ],
+  "object_events": [],
   "warp_events": [
     {
       "x": 19,
@@ -61,9 +59,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "hidden_item",

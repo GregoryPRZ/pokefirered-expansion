@@ -42,7 +42,7 @@ CeladonCity_GameCorner_EventScript_PrintTypeSepia::
 CeladonCity_GameCorner_EventScript_PrintPhoto::
 	message CeladonCity_GameCorner_Text_BigSmileForPhoto
 	waitmessage
-	playse MUS_PHOTO
+	playse MUS_HG_CAUGHT
 	dofieldeffect FLDEFF_PHOTO_FLASH
 	delay 60
 	special UpdateTrainerCardPhotoIcons
@@ -225,7 +225,7 @@ FourIsland_House2_EventScript_AlreadyBraggedHoFMax::
 
 FourIsland_House2_EventScript_BraggedHoF::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_LEVEL_UP
 	message FourIsland_House2_Text_HoFStickerApplied
 	waitmessage
 	waitfanfare
@@ -280,7 +280,7 @@ FourIsland_House2_EventScript_AlreadyBraggedEggsMax::
 
 FourIsland_House2_EventScript_BraggedEggs::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_LEVEL_UP
 	message FourIsland_House2_Text_EggStickerApplied
 	waitmessage
 	waitfanfare
@@ -335,7 +335,7 @@ FourIsland_House2_EventScript_AlreadyBraggedLinkWinsMax::
 
 FourIsland_House2_EventScript_BraggedLinkWins::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_LEVEL_UP
 	message FourIsland_House2_Text_VictoryStickerApplied
 	waitmessage
 	waitfanfare

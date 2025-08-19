@@ -1178,9 +1178,9 @@ static void MainTask_WinHandlePayout(u8 taskId)
     {
     case 0:
         if (sSlotMachineState->slotRewardClass == PAYOUT_ROCKET || sSlotMachineState->slotRewardClass == PAYOUT_7)
-            PlayFanfare(MUS_SLOTS_JACKPOT);
+            PlayFanfare(MUS_HG_GAME_CORNER_WIN);
         else
-            PlayFanfare(MUS_SLOTS_WIN);
+            PlayFanfare(MUS_HG_GAME_CORNER_WIN);
         SetSlotMachineSetupTask(SLOTTASK_SHOW_AMOUNTS, 0);
         SetSlotMachineSetupTask(SLOTTASK_ANIM_WIN, 1);
         data[1] = 8;

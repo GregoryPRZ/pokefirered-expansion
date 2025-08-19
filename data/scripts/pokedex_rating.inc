@@ -25,11 +25,11 @@ PokedexRating_EventScript_ShowRatingMsg::
 	return
 
 PokedexRating_EventScript_NormalFanfare::
-	playfanfare MUS_DEX_RATING
+	playfanfare MUS_HG_DEX_RATING_1
 	return
 
 PokedexRating_EventScript_DexCompleteFanfare::
-	playfanfare MUS_EVOLVED
+	playfanfare MUS_HG_EVOLVED
 	return
 
 PokedexRating_EventScript_Rate::

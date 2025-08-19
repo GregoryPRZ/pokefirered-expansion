@@ -512,7 +512,7 @@ EventScript_TryUnlockDoor::
 	end
 
 EventScript_OpenDoor::
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_LEVEL_UP
 	msgbox Text_CardKeyOpenedDoor
 	waitfanfare
 	call_if_eq VAR_TEMP_1, 1, EventScript_Open2FDoor1

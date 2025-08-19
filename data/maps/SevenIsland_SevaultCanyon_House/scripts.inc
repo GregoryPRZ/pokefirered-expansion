@@ -6,7 +6,7 @@ SevenIsland_SevaultCanyon_House_MapScripts::
 SevenIsland_SevaultCanyon_House_EventScript_ChanseyDanceMan::
 	lock
 	goto_if_set DID_CHANSEY_DANCE, SevenIsland_SevaultCanyon_House_EventScript_AlreadyDanced
-	playbgm MUS_SCHOOL, 0
+	playbgm MUS_HG_LYRA, 0
 	applymovement LOCALID_CHANSEY_DANCE_MAN, SevenIsland_SevaultCanyon_House_Movement_ChanseyDance
 	waitmovement 0
 	fadedefaultbgm
@@ -22,7 +22,7 @@ SevenIsland_SevaultCanyon_House_EventScript_ChanseyDanceMan::
 	call EventScript_RestorePrevTextColor
 	call_if_ne VAR_FACING, DIR_SOUTH, SevenIsland_SevaultCanyon_House_EventScript_PlayerFaceDown
 	delay 30
-	playbgm MUS_SCHOOL, 0
+	playbgm MUS_HG_LYRA, 0
 	applymovement LOCALID_PLAYER, SevenIsland_SevaultCanyon_House_Movement_ChanseyDance
 	waitmovement 0
 	fadedefaultbgm

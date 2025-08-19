@@ -957,7 +957,7 @@ static u32 QuitBerryCrush(MainCallback callback)
     SetMainCallback2(callback);
     if (callback == CB2_ReturnToField)
     {
-        PlayNewMapMusic(MUS_POKE_CENTER);
+        PlayNewMapMusic(MUS_HG_POKE_CENTER);
         SetMainCallback1(CB1_Overworld);
     }
 
@@ -1316,7 +1316,7 @@ static u32 Cmd_SignalReadyToBegin(struct BerryCrushGame * game, u8 *args)
     case 1:
         if (IsLinkTaskFinished())
         {
-            PlayNewMapMusic(MUS_GAME_CORNER);
+            PlayNewMapMusic(MUS_HG_GAME_CORNER);
             RunOrScheduleCommand(CMD_ASK_PICK_BERRY, SCHEDULE_CMD, NULL);
             game->gameState = STATE_PICK_BERRY;
             game->cmdState = 0;

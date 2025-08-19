@@ -162,7 +162,7 @@ BattleScript_UsePokeFlute::
 BattleScript_PokeFluteWakeUp::
 	printstring STRINGID_POKEFLUTE
 	waitmessage B_WAIT_TIME_LONG
-	fanfare MUS_POKE_FLUTE
+	fanfare MUS_HG_RADIO_POKE_FLUTE
 	waitfanfare
 	printstring STRINGID_MONHEARINGFLUTEAWOKE
 	waitmessage B_WAIT_TIME_LONG
