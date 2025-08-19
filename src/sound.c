@@ -18,8 +18,6 @@ struct Fanfare
     u16 duration;
 };
 
-typedef u16 (*MusicHandler)(u16);
-
 // TODO: what are these
 extern u8 gDisableMapMusicChangeOnMapLoad;
 extern u8 gDisableHelpSystemVolumeReduce;
@@ -89,214 +87,6 @@ static const struct Fanfare sFanfares[] = {
     [FANFARE_HG_CLEAR_MINIGAME]        = { MUS_HG_WIN_MINIGAME         , 230 },
     [FANFARE_HG_PARTNER]               = { MUS_HG_LETS_GO_TOGETHER     , 180 },
 };
-
-u16 FireRedMusicHandler(u16 songNum) {
-    return songNum;
-}
-
-u16 HGSSMusicHandler(u16 songNum) {
-    switch(songNum) {
-        case MUS_HEAL:
-            return MUS_HG_HEAL;
-        case MUS_LEVEL_UP:
-            return MUS_HG_LEVEL_UP;
-        case MUS_OBTAIN_ITEM:
-            return MUS_HG_OBTAIN_ITEM;
-        case MUS_EVOLVED:
-            return MUS_HG_EVOLVED;
-        case MUS_OBTAIN_BADGE:
-            return MUS_HG_OBTAIN_BADGE;
-        case MUS_OBTAIN_TMHM:
-            return MUS_HG_OBTAIN_TMHM;
-        case MUS_OBTAIN_BERRY:
-            return MUS_HG_OBTAIN_BERRY;
-        case MUS_EVOLUTION_INTRO:
-            return MUS_HG_EVOLUTION_NO_INTRO;
-        case MUS_EVOLUTION:
-            return MUS_HG_EVOLUTION;
-        case MUS_RS_VS_GYM_LEADER:
-            return MUS_HG_VS_FRONTIER_BRAIN;
-        case MUS_RS_VS_TRAINER:
-            return MUS_HG_VS_ROCKET;
-        case MUS_SCHOOL:
-            return MUS_HG_LYRA;
-        case MUS_SLOTS_JACKPOT:
-            return MUS_HG_GAME_CORNER_WIN;
-        case MUS_SLOTS_WIN:
-            return MUS_HG_GAME_CORNER_WIN;
-        case MUS_MOVE_DELETED:
-            return MUS_HG_MOVE_DELETED;
-        case MUS_TOO_BAD:
-            return MUS_HG_RADIO_UNOWN;
-        case MUS_FOLLOW_ME:
-            return MUS_HG_FOLLOW_ME_1;
-        case MUS_GAME_CORNER:
-            return MUS_HG_GAME_CORNER;
-        case MUS_ROCKET_HIDEOUT:
-            return MUS_HG_TEAM_ROCKET_HQ;
-        case MUS_GYM:
-            return MUS_HG_GYM;
-        case MUS_JIGGLYPUFF:
-            return MUS_HG_RADIO_LULLABY;
-        case MUS_INTRO_FIGHT:
-            return MUS_HG_INTRO;
-        case MUS_TITLE:
-            return MUS_HG_TITLE;
-        case MUS_CINNABAR:
-            return MUS_HG_CINNABAR;
-        case MUS_LAVENDER:
-            return MUS_HG_LAVENDER;
-        case MUS_HEAL_UNUSED:
-            return MUS_HG_HEAL;
-        case MUS_CYCLING:
-            return MUS_HG_CYCLING;
-        case MUS_ENCOUNTER_ROCKET:
-            return MUS_HG_ENCOUNTER_ROCKET;
-        case MUS_ENCOUNTER_GIRL:
-            return MUS_HG_ENCOUNTER_GIRL_1;
-        case MUS_ENCOUNTER_BOY:
-            return MUS_HG_ENCOUNTER_BOY_1;
-        case MUS_HALL_OF_FAME:
-            return MUS_HG_E_DENDOURIRI;
-        case MUS_VIRIDIAN_FOREST:
-            return MUS_HG_VIRIDIAN_FOREST;
-        case MUS_MT_MOON:
-            return MUS_HG_ROCK_TUNNEL;
-        case MUS_POKE_MANSION:
-            return MUS_HG_RUINS_OF_ALPH;
-        case MUS_CREDITS:
-            return MUS_HG_CREDITS;
-        case MUS_ROUTE1:
-            return MUS_HG_ROUTE1;
-        case MUS_ROUTE24:
-            return MUS_HG_ROUTE24;
-        case MUS_ROUTE3:
-            return MUS_HG_ROUTE3;
-        case MUS_ROUTE11:
-            return MUS_HG_ROUTE11;
-        case MUS_VICTORY_ROAD:
-            return MUS_HG_VICTORY_ROAD;
-        case MUS_VS_GYM_LEADER:
-            return MUS_HG_VS_GYM_LEADER_KANTO;
-        case MUS_VS_TRAINER:
-            return MUS_HG_VS_TRAINER_KANTO;
-        case MUS_VS_WILD:
-            return MUS_HG_VS_WILD_KANTO;
-        case MUS_VS_CHAMPION:
-            return MUS_HG_VS_CHAMPION;
-        case MUS_PALLET:
-            return MUS_HG_PALLET;
-        case MUS_OAK_LAB:
-            return MUS_HG_ELM_LAB;
-        case MUS_OAK:
-            return MUS_HG_OAK;
-        case MUS_POKE_CENTER:
-            return MUS_HG_POKE_CENTER;
-        case MUS_SS_ANNE:
-            return MUS_HG_SS_AQUA;
-        case MUS_SURF:
-            return MUS_HG_SURF;
-        case MUS_POKE_TOWER:
-            return MUS_HG_BELL_TOWER;
-        case MUS_SILPH:
-            return MUS_HG_ROCKET_TAKEOVER;
-        case MUS_FUCHSIA:
-            return MUS_HG_CERULEAN;
-        case MUS_CELADON:
-            return MUS_HG_CELADON;
-        case MUS_VICTORY_TRAINER:
-            return MUS_HG_VICTORY_TRAINER;
-        case MUS_VICTORY_WILD:
-            return MUS_HG_VICTORY_TRAINER;
-        case MUS_VICTORY_GYM_LEADER:
-            return MUS_HG_VICTORY_TRAINER;
-        case MUS_VERMILLION:
-            return MUS_HG_VERMILION;
-        case MUS_PEWTER:
-            return MUS_HG_PEWTER;
-        case MUS_ENCOUNTER_RIVAL:
-            return MUS_HG_ENCOUNTER_RIVAL;
-        case MUS_RIVAL_EXIT:
-            return MUS_HG_RIVAL_EXIT;
-        case MUS_DEX_RATING:
-            return MUS_HG_DEX_RATING_1;
-        case MUS_OBTAIN_KEY_ITEM:
-            return MUS_HG_OBTAIN_KEY_ITEM;
-        case MUS_CAUGHT_INTRO:
-            return MUS_HG_CAUGHT;
-        case MUS_PHOTO:
-            return MUS_HG_CAUGHT;
-        case MUS_GAME_FREAK:
-            return MUS_HG_INTRO;
-        case MUS_CAUGHT:
-            return MUS_HG_CAUGHT;
-        case MUS_NEW_GAME_INSTRUCT:
-            return MUS_HG_NEW_GAME;
-        case MUS_NEW_GAME_INTRO:
-            return MUS_HG_NEW_GAME;
-        case MUS_NEW_GAME_EXIT:
-            return MUS_HG_NEW_GAME;
-        case MUS_POKE_JUMP:
-            return MUS_HG_BUG_CATCHING_CONTEST;
-        case MUS_UNION_ROOM:
-            return MUS_HG_UNION_CAVE;
-        case MUS_NET_CENTER:
-            return MUS_HG_POKE_CENTER;
-        case MUS_MYSTERY_GIFT:
-            return MUS_HG_MYSTERY_GIFT;
-        case MUS_BERRY_PICK:
-            return MUS_HG_OBTAIN_BERRY;
-        case MUS_SEVII_CAVE:
-            return MUS_HG_UNION_CAVE;
-        case MUS_TEACHY_TV_SHOW:
-            return MUS_HG_RADIO_OAK;
-        case MUS_SEVII_ROUTE:
-            return MUS_HG_ROUTE26;
-        case MUS_SEVII_DUNGEON:
-            return MUS_HG_VIRIDIAN_FOREST;
-        case MUS_SEVII_123:
-            return MUS_HG_CHERRYGROVE;
-        case MUS_SEVII_45:
-            return MUS_HG_VIOLET;
-        case MUS_SEVII_67:
-            return MUS_HG_AZALEA;
-        case MUS_POKE_FLUTE:
-            return MUS_HG_RADIO_POKE_FLUTE;
-        case MUS_VS_DEOXYS:
-            return MUS_HG_VS_SUICUNE;
-        case MUS_VS_MEWTWO:
-            return MUS_HG_VS_SUICUNE;
-        case MUS_VS_LEGEND:
-            return MUS_HG_VS_SUICUNE;
-        case MUS_ENCOUNTER_GYM_LEADER:
-            return MUS_HG_ENCOUNTER_KIMONO_GIRL;
-        case MUS_ENCOUNTER_DEOXYS:
-            return MUS_HG_ENCOUNTER_RIVAL;
-        case MUS_TRAINER_TOWER:
-            return MUS_HG_B_TOWER;
-        case MUS_SLOW_PALLET:
-            return MUS_HG_PALLET;
-        case MUS_TEACHY_TV_MENU:
-            return MUS_HG_RADIO_OAK;
-        default:
-            return songNum;
-    }
-}
-
-u16 RegionalMusicHandler(u16 songNum) {
-    MusicHandler handler;
-    switch (gSaveBlock1Ptr->optionsMusicSet) {
-        case OPTIONS_MUSIC_HGSS:
-            handler = HGSSMusicHandler;
-            break;
-        case OPTIONS_MUSIC_FIRERED:
-        default:
-            handler = FireRedMusicHandler;
-            break;
-    }
-
-    return handler(songNum);
-}
 
 void InitMapMusic(void)
 {
@@ -430,8 +220,8 @@ void PlayFanfareByFanfareNum(u8 fanfareNum)
     else
     {
         m4aMPlayStop(&gMPlayInfo_BGM);
-        songNum = RegionalMusicHandler(sFanfares[fanfareNum].songNum);
-        sFanfareCounter = RegionalMusicHandler(sFanfares[fanfareNum].duration);
+        songNum = sFanfares[fanfareNum].songNum;
+        sFanfareCounter = sFanfares[fanfareNum].duration;
         m4aSongNumStart(songNum);
     }
 }
@@ -796,20 +586,18 @@ static void RestoreBGMVolumeAfterPokemonCry(void)
 
 void PlayBGM(u16 songNum)
 {
-    u16 song;
-    song = RegionalMusicHandler(songNum);
     if (gDisableMusic)
         songNum = 0;
     if (songNum == MUS_NONE)
         songNum = 0;
     
-    m4aSongNumStart(song);
+    m4aSongNumStart(songNum);
 }
 
 void PlaySE(u16 songNum)
 {
     if (gDisableMapMusicChangeOnMapLoad == 0 && gQuestLogState != QL_STATE_PLAYBACK)
-            m4aSongNumStart(RegionalMusicHandler(songNum));
+            m4aSongNumStart(songNum);
 }
 
 void PlaySE12WithPanning(u16 songNum, s8 pan)
