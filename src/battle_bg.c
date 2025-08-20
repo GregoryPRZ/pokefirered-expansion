@@ -631,6 +631,14 @@ static const struct {
     {MAP_BATTLE_SCENE_GYM,      BATTLE_ENVIRONMENT_GYM},
     {MAP_BATTLE_SCENE_INDOOR_1, BATTLE_ENVIRONMENT_INDOOR_1},
     {MAP_BATTLE_SCENE_INDOOR_2, BATTLE_ENVIRONMENT_INDOOR_2},
+    {MAP_BATTLE_SCENE_BROCK,    BATTLE_ENVIRONMENT_BROCK},
+    {MAP_BATTLE_SCENE_MISTY,    BATTLE_ENVIRONMENT_MISTY},
+    {MAP_BATTLE_SCENE_SURGE,    BATTLE_ENVIRONMENT_SURGE},
+    {MAP_BATTLE_SCENE_ERIKA,    BATTLE_ENVIRONMENT_ERIKA},
+    {MAP_BATTLE_SCENE_KOGA,     BATTLE_ENVIRONMENT_KOGA},
+    {MAP_BATTLE_SCENE_SABRINA,  BATTLE_ENVIRONMENT_SABRINA},
+    {MAP_BATTLE_SCENE_BLAINE,   BATTLE_ENVIRONMENT_BLAINE},
+    {MAP_BATTLE_SCENE_GIOVANNI, BATTLE_ENVIRONMENT_GIOVANNI},
     {MAP_BATTLE_SCENE_LORELEI,  BATTLE_ENVIRONMENT_LORELEI},
     {MAP_BATTLE_SCENE_BRUNO,    BATTLE_ENVIRONMENT_BRUNO},
     {MAP_BATTLE_SCENE_AGATHA,   BATTLE_ENVIRONMENT_AGATHA},
@@ -652,6 +660,14 @@ static u8 GetBattleTerrainByMapScene(u8 mapBattleScene)
 static const void* const sSeasonBattleBackgrounds[BATTLE_ENVIRONMENT_COUNT][SEASON_WINTER + 1] =
 {
     [BATTLE_ENVIRONMENT_GRASS] = 
+    {
+        [SEASON_SPRING] = &gBattleEnvironmentPalette_Grass,
+        [SEASON_SUMMER] = &gBattleEnvironmentPalette_GrassSummer,
+        [SEASON_AUTUMN] = &gBattleEnvironmentPalette_GrassAutumn,
+        [SEASON_WINTER] = &gBattleEnvironmentPalette_GrassWinter,
+    },
+    
+    [BATTLE_ENVIRONMENT_PLAIN] = 
     {
         [SEASON_SPRING] = &gBattleEnvironmentPalette_Grass,
         [SEASON_SUMMER] = &gBattleEnvironmentPalette_GrassSummer,
@@ -1121,9 +1137,7 @@ static u8 GetBattleTerrainOverride(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         u32 trainerClass = GetTrainerClassFromId(TRAINER_BATTLE_PARAM.opponentA);
-        if (trainerClass == TRAINER_CLASS_LEADER)
-            return BATTLE_ENVIRONMENT_LEADER;
-        else if (trainerClass == TRAINER_CLASS_CHAMPION)
+        if (trainerClass == TRAINER_CLASS_CHAMPION)
             return BATTLE_ENVIRONMENT_CHAMPION;
     }
     battleScene = GetCurrentMapBattleScene();

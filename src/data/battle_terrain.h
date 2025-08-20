@@ -183,11 +183,11 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
         .camouflageType = B_CAMOUFLAGE_TYPES >= GEN_4 ? TYPE_GROUND : TYPE_NORMAL,
         .background =
         {
-            .tileset = gBattleEnvironmentTiles_Building,
-            .tilemap = gBattleEnvironmentTilemap_Building,
-            .entryTileset = gBattleEnvironmentAnimTiles_Building,
-            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
-            .palette = gBattleEnvironmentPalette_Plain,
+            .tileset = gBattleEnvironmentTiles_Grass,
+            .tilemap = gBattleEnvironmentTilemap_Grass,
+            .entryTileset = gBattleEnvironmentAnimTiles_Grass,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Grass,
+            .palette = gBattleEnvironmentPalette_Grass,
         },
     },
     [BATTLE_ENVIRONMENT_SOARING] =
@@ -301,25 +301,11 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
         .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
         .camouflageType = TYPE_NORMAL,
         .background = {
-            .tileset = gBattleEnvironmentTiles_Building,
-            .tilemap = gBattleEnvironmentTilemap_Building,
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
             .entryTileset = gBattleEnvironmentAnimTiles_Building,
             .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
             .palette = gBattleEnvironmentPalette_Gym
-        }
-    },
-    [BATTLE_ENVIRONMENT_LEADER] =
-    {
-        .name = _("NORMAL - LEADER          "),
-        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
-        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
-        .camouflageType = TYPE_NORMAL,
-        .background = {
-            .tileset = gBattleEnvironmentTiles_Building,
-            .tilemap = gBattleEnvironmentTilemap_Building,
-            .entryTileset = gBattleEnvironmentAnimTiles_Building,
-            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
-            .palette = gBattleEnvironmentPalette_Leader
         }
     },
     [BATTLE_ENVIRONMENT_INDOOR_2] =
@@ -333,7 +319,7 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
             .tilemap = gBattleEnvironmentTilemap_Indoor,
             .entryTileset = gBattleEnvironmentAnimTiles_Building,
             .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
-            .palette = gBattleEnvironmentPalette_Indoor2
+            .palette = gBattleEnvironmentPalette_Indoor
         }
     },
     [BATTLE_ENVIRONMENT_INDOOR_1] =
@@ -347,7 +333,7 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
             .tilemap = gBattleEnvironmentTilemap_Indoor,
             .entryTileset = gBattleEnvironmentAnimTiles_Building,
             .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
-            .palette = gBattleEnvironmentPalette_Indoor1
+            .palette = gBattleEnvironmentPalette_Indoor
         }
     },
     [BATTLE_ENVIRONMENT_LORELEI] =
@@ -357,8 +343,8 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
         .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
         .camouflageType = TYPE_NORMAL,
         .background = {
-            .tileset = gBattleEnvironmentTiles_Indoor,
-            .tilemap = gBattleEnvironmentTilemap_Indoor,
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
             .entryTileset = gBattleEnvironmentAnimTiles_Building,
             .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
             .palette = gBattleEnvironmentPalette_Lorelei
@@ -371,8 +357,8 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
         .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
         .camouflageType = TYPE_NORMAL,
         .background = {
-            .tileset = gBattleEnvironmentTiles_Indoor,
-            .tilemap = gBattleEnvironmentTilemap_Indoor,
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
             .entryTileset = gBattleEnvironmentAnimTiles_Building,
             .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
             .palette = gBattleEnvironmentPalette_Bruno
@@ -385,8 +371,8 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
         .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
         .camouflageType = TYPE_NORMAL,
         .background = {
-            .tileset = gBattleEnvironmentTiles_Indoor,
-            .tilemap = gBattleEnvironmentTilemap_Indoor,
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
             .entryTileset = gBattleEnvironmentAnimTiles_Building,
             .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
             .palette = gBattleEnvironmentPalette_Agatha
@@ -399,8 +385,8 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
         .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
         .camouflageType = TYPE_NORMAL,
         .background = {
-            .tileset = gBattleEnvironmentTiles_Indoor,
-            .tilemap = gBattleEnvironmentTilemap_Indoor,
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
             .entryTileset = gBattleEnvironmentAnimTiles_Building,
             .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
             .palette = gBattleEnvironmentPalette_Lance
@@ -413,11 +399,123 @@ const struct BattleTerrain gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] =
         .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
         .camouflageType = TYPE_NORMAL,
         .background = {
-            .tileset = gBattleEnvironmentTiles_Indoor,
-            .tilemap = gBattleEnvironmentTilemap_Indoor,
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
             .entryTileset = gBattleEnvironmentAnimTiles_Building,
             .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
-            .palette = gBattleEnvironmentPalette_Champion
+            .palette = gBattleEnvironmentPalette_Gym
+        }
+    },
+    [BATTLE_ENVIRONMENT_BROCK] =
+    {
+        .name = _("NORMAL - BROCK           "),
+        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
+        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
+        .camouflageType = TYPE_NORMAL,
+        .background = {
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
+            .entryTileset = gBattleEnvironmentAnimTiles_Building,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
+            .palette = gBattleEnvironmentPalette_Brock
+        }
+    },
+    [BATTLE_ENVIRONMENT_MISTY] =
+    {
+        .name = _("NORMAL - MISTY           "),
+        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
+        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
+        .camouflageType = TYPE_NORMAL,
+        .background = {
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
+            .entryTileset = gBattleEnvironmentAnimTiles_Building,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
+            .palette = gBattleEnvironmentPalette_Misty
+        }
+    },
+    [BATTLE_ENVIRONMENT_SURGE] =
+    {
+        .name = _("NORMAL - LT SURGE        "),
+        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
+        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
+        .camouflageType = TYPE_NORMAL,
+        .background = {
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
+            .entryTileset = gBattleEnvironmentAnimTiles_Building,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
+            .palette = gBattleEnvironmentPalette_Surge
+        }
+    },
+    [BATTLE_ENVIRONMENT_ERIKA] =
+    {
+        .name = _("NORMAL - ERIKA           "),
+        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
+        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
+        .camouflageType = TYPE_NORMAL,
+        .background = {
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
+            .entryTileset = gBattleEnvironmentAnimTiles_Building,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
+            .palette = gBattleEnvironmentPalette_Erika
+        }
+    },
+    [BATTLE_ENVIRONMENT_KOGA] =
+    {
+        .name = _("NORMAL - KOGA            "),
+        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
+        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
+        .camouflageType = TYPE_NORMAL,
+        .background = {
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
+            .entryTileset = gBattleEnvironmentAnimTiles_Building,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
+            .palette = gBattleEnvironmentPalette_Koga
+        }
+    },
+    [BATTLE_ENVIRONMENT_SABRINA] =
+    {
+        .name = _("NORMAL - SABRINA         "),
+        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
+        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
+        .camouflageType = TYPE_NORMAL,
+        .background = {
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
+            .entryTileset = gBattleEnvironmentAnimTiles_Building,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
+            .palette = gBattleEnvironmentPalette_Sabrina
+        }
+    },
+    [BATTLE_ENVIRONMENT_BLAINE] =
+    {
+        .name = _("NORMAL - BLAINE          "),
+        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
+        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
+        .camouflageType = TYPE_NORMAL,
+        .background = {
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
+            .entryTileset = gBattleEnvironmentAnimTiles_Building,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
+            .palette = gBattleEnvironmentPalette_Blaine
+        }
+    },
+    [BATTLE_ENVIRONMENT_GIOVANNI] =
+    {
+        .name = _("NORMAL - GIOVANNI        "),
+        .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
+        .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
+        .camouflageType = TYPE_NORMAL,
+        .background = {
+            .tileset = gBattleEnvironmentTiles_Gym,
+            .tilemap = gBattleEnvironmentTilemap_Gym,
+            .entryTileset = gBattleEnvironmentAnimTiles_Building,
+            .entryTilemap = gBattleEnvironmentAnimTilemap_Building,
+            .palette = gBattleEnvironmentPalette_Giovanni
         }
     }
 };

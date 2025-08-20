@@ -1185,7 +1185,7 @@ void PlayTrainerEncounterMusic(void)
         case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
         case TRAINER_ENCOUNTER_MUSIC_INTERVIEWER:
         default:
-            music = MUS_HG_ENCOUNTER_KIMONO_GIRL;
+            music = MUS_HG_ENCOUNTER_BOY_2;
             break;
         }
         PlayNewMapMusic(music);

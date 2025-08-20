@@ -326,6 +326,20 @@
 #define OBJ_EVENT_PAL_TAG_SAILOR                         0x117A
 #define OBJ_EVENT_PAL_TAG_GENTLEMAN                      0x117B
 #define OBJ_EVENT_PAL_TAG_LASS                           0x117C
+
+#define OBJ_EVENT_PAL_TAG_BROCK                          0x117D
+#define OBJ_EVENT_PAL_TAG_MISTY                          0x117E
+#define OBJ_EVENT_PAL_TAG_SURGE                          0x117F
+#define OBJ_EVENT_PAL_TAG_ERIKA                          0x1180
+#define OBJ_EVENT_PAL_TAG_KOGA                           0x1181
+#define OBJ_EVENT_PAL_TAG_SABRINA                        0x1182
+#define OBJ_EVENT_PAL_TAG_BLAINE                         0x1183
+#define OBJ_EVENT_PAL_TAG_GIOVANNI                       0x1184
+#define OBJ_EVENT_PAL_TAG_LORELEI                        0x1185
+#define OBJ_EVENT_PAL_TAG_BRUNO                          0x1186
+#define OBJ_EVENT_PAL_TAG_AGATHA                         0x1187
+#define OBJ_EVENT_PAL_TAG_LANCE                          0x1188
+#define OBJ_EVENT_PAL_TAG_BLUE                           0x1189
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
