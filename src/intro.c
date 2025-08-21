@@ -1165,7 +1165,7 @@ static void IntroCB_GF_Star(struct IntroSequenceData * this)
     switch (this->state)
     {
     case 0:
-        PlaySE(MUS_GAME_FREAK);
+        PlaySE(MUS_HG_INTRO);
         GFScene_LoadGfxCreateStar();
         this->timer = 0;
         this->state++;

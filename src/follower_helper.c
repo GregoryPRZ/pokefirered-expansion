@@ -126,7 +126,7 @@ const struct FollowerMsgInfoExtended gFollowerConditionalMessages[COND_MSG_COUNT
         .emotion = FOLLOWER_EMOTION_NEUTRAL,
         .conditions =
         {
-            MATCH_MUSIC(MUS_POKE_CENTER)
+            MATCH_MUSIC(MUS_HG_POKE_CENTER)
         },
     },
     [COND_MSG_VICTORY_ROAD] =
@@ -135,7 +135,7 @@ const struct FollowerMsgInfoExtended gFollowerConditionalMessages[COND_MSG_COUNT
         .emotion = FOLLOWER_EMOTION_PENSIVE,
         .conditions =
         {
-            MATCH_MUSIC(MUS_VICTORY_ROAD)
+            MATCH_MUSIC(MUS_HG_VICTORY_ROAD)
         },
     },
     [COND_MSG_BIKE_SHOP] =
@@ -168,7 +168,7 @@ const struct FollowerMsgInfoExtended gFollowerConditionalMessages[COND_MSG_COUNT
         .script = EventScript_FollowerLookAround,
         .conditions =
         {
-            MATCH_MUSIC(MUS_CINNABAR), // Todo:
+            MATCH_MUSIC(MUS_HG_CINNABAR), // Todo:
         },
     },
     [COND_MSG_PUDDLE] =
@@ -256,7 +256,7 @@ const struct FollowerMsgInfoExtended gFollowerConditionalMessages[COND_MSG_COUNT
         {
             MATCH_NOT_TYPES(TYPE_GHOST, TYPE_GHOST),
             MATCH_MAPSEC(MAPSEC_MT_PYRE),
-            MATCH_MUSIC(MUS_MT_MOON),
+            MATCH_MUSIC(MUS_HG_ROCK_TUNNEL),
         },
     },
     [COND_MSG_FIRE_RAIN] =

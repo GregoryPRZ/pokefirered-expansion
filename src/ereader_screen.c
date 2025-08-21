@@ -486,7 +486,7 @@ static void Task_EReader(u8 taskId)
         if (UpdateTimer(&data->timer, 120))
         {
             AddTextPrinterToWindow1(gJPText_NewTrainerHasComeToSevii);
-            PlayFanfare(MUS_OBTAIN_ITEM);
+            PlayFanfare(MUS_HG_OBTAIN_ITEM);
             data->state = ER_STATE_SUCCESS_END;
         }
         break;

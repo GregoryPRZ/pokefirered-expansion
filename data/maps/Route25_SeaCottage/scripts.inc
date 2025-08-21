@@ -187,7 +187,7 @@ Route25_SeaCottage_EventScript_RunCellSeparator::
 	addobject LOCALID_BILL_HUMAN
 	clearflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
 	delay 50
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_LEVEL_UP
 	applymovement LOCALID_BILL_HUMAN, Route25_SeaCottage_Movement_BillExitTeleporter
 	waitmovement 0
 	waitfanfare

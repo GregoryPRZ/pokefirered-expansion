@@ -789,7 +789,7 @@ static void Task_NewGameScene(u8 taskId)
         ShowBg(0);
         ShowBg(1);
         SetVBlankCallback(VBlankCB_NewGameScene);
-        PlayBGM(MUS_NEW_GAME_INSTRUCT);
+        PlayBGM(MUS_HG_NEW_GAME);
         gTasks[taskId].func = Task_ControlsGuide_HandleInput;
         gMain.state = 0;
         return;
@@ -953,7 +953,6 @@ static void Task_PikachuIntro_LoadPage1(u8 taskId)
     }
     else
     {
-        PlayBGM(MUS_NEW_GAME_INTRO);
         HofPCTopBar_Clear();
         HofPCTopBar_Print(gText_ABUTTONNext, 0, 1);
         sOakSpeechResources->pikachuIntroTilemap = malloc_and_decompress(sPikachuIntro_Background_Tilemap, &size);
@@ -1054,7 +1053,6 @@ static void Task_PikachuIntro_HandleInput(u8 taskId)
         break;
     case PIKACHU_INTRO_EXIT:
         DestroyTextCursorSprite(gTasks[taskId].tTextCursorSpriteId);
-        PlayBGM(MUS_NEW_GAME_EXIT);
         tBlendTarget = 24;
         gMain.state++;
         break;
@@ -1117,7 +1115,7 @@ static void Task_OakSpeech_Init(u8 taskId)
         CreateNidoranFSprite(taskId);
         LoadTrainerPic(OAK_PIC, 0);
         CreatePikachuOrPlatformSprites(taskId, SPRITE_TYPE_PLATFORM);
-        PlayBGM(MUS_ROUTE24);
+        PlayBGM(MUS_HG_ROUTE24);
         BeginNormalPaletteFade(PALETTES_ALL, 5, 16, 0, RGB_BLACK);
         tTimer = 80;
         ShowBg(2);

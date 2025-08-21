@@ -143,7 +143,7 @@ CeladonCity_DepartmentStore_Roof_EventScript_GiveDrink::
 	goto_if_eq VAR_RESULT, FALSE, CeladonCity_DepartmentStore_Roof_EventScript_NoRoomForReward
 	additem VAR_0x8009
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_OBTAIN_ITEM
 	message Text_ReceivedItemFromLittleGirl
 	waitmessage
 	waitfanfare

@@ -1551,7 +1551,7 @@ static void SpriteCB_Ball_Capture_Step(struct Sprite *sprite)
         gDoingBattleAnim = FALSE;
         UpdateOamPriorityInAllHealthboxes(1, FALSE);
         m4aMPlayAllStop();
-        PlaySE(MUS_CAUGHT_INTRO);
+        PlaySE(MUS_HG_CAUGHT);
     }
     else if (sprite->sTimer == 315)
     {

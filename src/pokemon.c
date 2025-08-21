@@ -6050,15 +6050,36 @@ u16 GetBattleBGM(void)
     {
         switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL))
         {
+        case SPECIES_MEWTWO:
+            return MUS_VS_MEWTWO;
+        case SPECIES_ARTICUNO:
+        case SPECIES_MOLTRES:
+        case SPECIES_ZAPDOS:
+            return MUS_VS_LEGEND;
+        case SPECIES_HO_OH:
+            return MUS_HG_VS_HO_OH;
+        case SPECIES_LUGIA:
+            return MUS_HG_VS_LUGIA;
         case SPECIES_REGIROCK:
         case SPECIES_REGICE:
         case SPECIES_REGISTEEL:
         case SPECIES_REGIGIGAS:
         case SPECIES_REGIELEKI:
         case SPECIES_REGIDRAGO:
-            return MUS_RS_VS_TRAINER;
+            return MUS_PL_VS_REGI;
+        case SPECIES_DEOXYS:
+        case SPECIES_DEOXYS_ATTACK:
+        case SPECIES_DEOXYS_DEFENSE:
+        case SPECIES_DEOXYS_SPEED:
+            return MUS_VS_DEOXYS;
+        case SPECIES_GROUDON:
+        case SPECIES_KYOGRE:
+        case SPECIES_RAYQUAZA:
+        case SPECIES_LATIOS:
+        case SPECIES_LATIAS:
+            return MUS_HG_VS_KYOGRE_GROUDON;
         default:
-            return MUS_VS_WILD;
+            return MUS_HG_VS_WILD;
         }
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
@@ -6072,24 +6093,29 @@ u16 GetBattleBGM(void)
         switch (trainerClass)
         {
         case TRAINER_CLASS_CHAMPION:
-            return MUS_VS_CHAMPION;
+            return MUS_HG_VS_CHAMPION;
         case TRAINER_CLASS_LEADER:
+            return MUS_HG_VS_GYM_LEADER_KANTO;
         case TRAINER_CLASS_ELITE_FOUR:
-            return MUS_VS_GYM_LEADER;
+            if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_ELITE_FOUR_LANCE || TRAINER_BATTLE_PARAM.opponentA == TRAINER_ELITE_FOUR_LANCE_2)
+            {
+                return MUS_HG_VS_CHAMPION;
+            }
+            return MUS_HG_VS_GYM_LEADER;
         case TRAINER_CLASS_BOSS:
-            return MUS_RS_VS_GYM_LEADER;
+            return MUS_HG_VS_FRONTIER_BRAIN;
         case TRAINER_CLASS_TEAM_ROCKET:
-            return MUS_RS_VS_TRAINER;
-        case TRAINER_CLASS_COOLTRAINER:
-        case TRAINER_CLASS_GENTLEMAN:
+            return MUS_HG_VS_ROCKET;
+        case TRAINER_CLASS_RIVAL_EARLY:
         case TRAINER_CLASS_RIVAL_LATE:
+            return MUS_HG_VS_RIVAL;
         default:
-            return MUS_VS_TRAINER;
+            return MUS_HG_VS_TRAINER_KANTO;
         }
     }
     else
     {
-        return MUS_VS_WILD;
+        return MUS_HG_VS_WILD_KANTO;
     }
 }
 

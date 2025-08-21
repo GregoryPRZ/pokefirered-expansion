@@ -3171,7 +3171,7 @@ static void PrintPrizeMessage(u16 itemId, u16 quantity)
     sPokemonJumpGfx->msgWindowId = AddMessageWindow(4, 8, 22, 4);
     AddTextPrinterParameterized(sPokemonJumpGfx->msgWindowId, FONT_NORMAL, sPokemonJumpGfx->prizeMsg, 0, 2, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(sPokemonJumpGfx->msgWindowId, COPYWIN_GFX);
-    sPokemonJumpGfx->fanfare = MUS_LEVEL_UP;
+    sPokemonJumpGfx->fanfare = MUS_HG_LEVEL_UP;
     sPokemonJumpGfx->msgWindowState = 0;
 }
 

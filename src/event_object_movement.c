@@ -540,6 +540,37 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_StrangeBall,           OBJ_EVENT_PAL_TAG_BALL_STRANGE},
     #endif //ITEM_STRANGE_BALL
 #endif //OW_FOLLOWERS_POKEBALLS
+    {gObjectEventPal_Youngster,           OBJ_EVENT_PAL_TAG_YOUNGSTER},
+    {gObjectEventPal_BugCatcher,          OBJ_EVENT_PAL_TAG_BUG_CATCHER},
+    {gObjectEventPal_Camper,              OBJ_EVENT_PAL_TAG_CAMPER},
+    {gObjectEventPal_Picnicker,          OBJ_EVENT_PAL_TAG_PICNICKER},
+    {gObjectEventPal_OldMan2,              OBJ_EVENT_PAL_TAG_OLD_MAN_2},
+    {gObjectEventPal_OldWoman,          OBJ_EVENT_PAL_TAG_OLD_WOMAN},
+    {gObjectEventPal_BaldingMan,          OBJ_EVENT_PAL_TAG_BALDING_MAN},
+    {gObjectEventPal_FatMan,              OBJ_EVENT_PAL_TAG_FAT_MAN},
+    {gObjectEventPal_OldMan1,          OBJ_EVENT_PAL_TAG_OLD_MAN_1},
+    {gObjectEventPal_Man,              OBJ_EVENT_PAL_TAG_MAN},
+    {gObjectEventPal_Clerk,          OBJ_EVENT_PAL_TAG_CLERK},
+    {gObjectEventPal_Fisher,              OBJ_EVENT_PAL_TAG_FISHER},
+    {gObjectEventPal_Scientist,          OBJ_EVENT_PAL_TAG_SCIENTIST},
+    {gObjectEventPal_SuperNerd,              OBJ_EVENT_PAL_TAG_SUPER_NERD},
+    {gObjectEventPal_Hiker,          OBJ_EVENT_PAL_TAG_HIKER},
+    {gObjectEventPal_Sailor,              OBJ_EVENT_PAL_TAG_SAILOR},
+    {gObjectEventPal_Gentleman,          OBJ_EVENT_PAL_TAG_GENTLEMAN},
+    {gObjectEventPal_Lass,              OBJ_EVENT_PAL_TAG_LASS},
+    {gObjectEventPal_Brock,          OBJ_EVENT_PAL_TAG_BROCK},
+    {gObjectEventPal_Misty,          OBJ_EVENT_PAL_TAG_MISTY},
+    {gObjectEventPal_Surge,              OBJ_EVENT_PAL_TAG_SURGE},
+    {gObjectEventPal_Erika,          OBJ_EVENT_PAL_TAG_ERIKA},
+    {gObjectEventPal_Koga,              OBJ_EVENT_PAL_TAG_KOGA},
+    {gObjectEventPal_Sabrina,          OBJ_EVENT_PAL_TAG_SABRINA},
+    {gObjectEventPal_Blaine,              OBJ_EVENT_PAL_TAG_BLAINE},
+    {gObjectEventPal_Giovanni,          OBJ_EVENT_PAL_TAG_GIOVANNI},
+    {gObjectEventPal_Lorelei,              OBJ_EVENT_PAL_TAG_LORELEI},
+    {gObjectEventPal_Agatha,          OBJ_EVENT_PAL_TAG_AGATHA},
+    {gObjectEventPal_Bruno,              OBJ_EVENT_PAL_TAG_BRUNO},
+    {gObjectEventPal_Lance,          OBJ_EVENT_PAL_TAG_LANCE},
+    {gObjectEventPal_Blue,              OBJ_EVENT_PAL_TAG_BLUE},
     {gObjectEventPal_Substitute,            OBJ_EVENT_PAL_TAG_SUBSTITUTE},
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
 #ifdef BUGFIX
@@ -2574,7 +2605,7 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
         condEmotes[condCount++] = (struct SpecialEmote) {.emotion = FOLLOWER_EMOTION_SAD, .index = 6};
     }
     // Gym type advantage/disadvantage
-    if (GetCurrentMapMusic() == MUS_GYM)
+    if (GetCurrentMapMusic() == MUS_HG_GYM)
     {
         switch (gMapHeader.regionMapSectionId)
         {

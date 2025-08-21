@@ -5157,7 +5157,7 @@ static void HandleEndTurn_BattleWon(void)
             && gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL | BATTLE_TYPE_EREADER_TRAINER))
     {
         BattleStopLowHpSound();
-        PlayBGM(MUS_VICTORY_TRAINER);
+        PlayBGM(MUS_HG_VICTORY_TRAINER);
         gBattlescriptCurrInstr = BattleScript_BattleTowerTrainerBattleWon;
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
@@ -5169,7 +5169,7 @@ static void HandleEndTurn_BattleWon(void)
         {
         case TRAINER_CLASS_LEADER:
         case TRAINER_CLASS_CHAMPION:
-            PlayBGM(MUS_VICTORY_GYM_LEADER);
+            PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
             break;
         case TRAINER_CLASS_BOSS:
         case TRAINER_CLASS_TEAM_ROCKET:
@@ -5177,7 +5177,7 @@ static void HandleEndTurn_BattleWon(void)
         case TRAINER_CLASS_ELITE_FOUR:
         case TRAINER_CLASS_GENTLEMAN:
         default:
-            PlayBGM(MUS_VICTORY_TRAINER);
+            PlayBGM(MUS_HG_VICTORY_TRAINER);
             break;
         }
     }

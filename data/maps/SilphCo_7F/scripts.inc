@@ -31,7 +31,7 @@ SilphCo_7F_EventScript_RivalTriggerBottom::
 
 SilphCo_7F_EventScript_RivalScene::
 	textcolor NPC_TEXT_COLOR_MALE
-	playbgm MUS_ENCOUNTER_RIVAL, 0
+	playbgm MUS_HG_ENCOUNTER_RIVAL, 0
 	applymovement LOCALID_SILPH_CO_RIVAL, Common_Movement_ExclamationMark
 	waitmovement 0
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
@@ -47,7 +47,7 @@ SilphCo_7F_EventScript_RivalScene::
 	call_if_eq VAR_STARTER_MON, 0, SilphCo_7F_EventScript_RivalCharmander
 	msgbox SilphCo_7F_Text_RivalPostBattle
 	closemessage
-	playbgm MUS_RIVAL_EXIT, 0
+	playbgm MUS_HG_RIVAL_EXIT, 0
 	call_if_eq VAR_TEMP_1, 0, SilphCo_7F_EventScript_RivalExitTop
 	call_if_eq VAR_TEMP_1, 1, SilphCo_7F_EventScript_RivalExitBottom
 	playse SE_WARP_IN
@@ -127,7 +127,7 @@ SilphCo_7F_EventScript_LaprasGuy::
 
 SilphCo_7F_EventScript_ReceiveLaprasParty::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_RECEIVE_POKEMON
 	message SilphCo_7F_Text_ObtainedLaprasFromEmployee
 	waitmessage
 	waitfanfare
@@ -141,7 +141,7 @@ SilphCo_7F_EventScript_ReceiveLaprasParty::
 
 SilphCo_7F_EventScript_ReceiveLaprasPC::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_HG_RECEIVE_POKEMON
 	message SilphCo_7F_Text_ObtainedLaprasFromEmployee
 	waitmessage
 	waitfanfare

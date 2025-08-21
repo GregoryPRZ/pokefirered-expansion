@@ -56,7 +56,7 @@ PalletTown_RivalsHouse_EventScript_GroomMon::
 	msgbox PalletTown_RivalsHouse_Text_LookingNiceInNoTime
 	closemessage
 	fadescreen FADE_TO_BLACK
-	playfanfare MUS_HEAL
+	playfanfare MUS_HG_HEAL
 	waitfanfare
 	special DaisyMassageServices
 	fadescreen FADE_FROM_BLACK

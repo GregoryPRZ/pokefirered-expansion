@@ -910,7 +910,6 @@ struct SaveBlock1
 #endif //FREE_TRAINER_HILL
     /*0x3D24*/ u8 unusedSB1[0x1C];
     /*0xF2C*/ bool8 autoRun;
-              u16 optionsMusicSet:1; // OPTIONS_MUSIC_[FIRERED/HGSS]
 }; // size: 0x3D68
 
 struct MapPosition

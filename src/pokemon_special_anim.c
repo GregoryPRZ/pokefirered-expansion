@@ -561,7 +561,7 @@ static void Task_MachineSet(u8 taskId)
     case 8:
         if (!PSA_IsMessagePrintTaskActive())
         {
-            PlayFanfare(MUS_LEVEL_UP);
+            PlayFanfare(MUS_HG_LEVEL_UP);
             ptr->cancelDisabled = TRUE;
             ptr->state++;
         }

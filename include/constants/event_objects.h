@@ -308,6 +308,38 @@
 // Gen VIII
 #define OBJ_EVENT_PAL_TAG_BALL_STRANGE            0x116A
 #endif //OW_FOLLOWERS_POKEBALLS
+#define OBJ_EVENT_PAL_TAG_YOUNGSTER                      0x116B
+#define OBJ_EVENT_PAL_TAG_BUG_CATCHER                    0x116C
+#define OBJ_EVENT_PAL_TAG_CAMPER                         0x116D
+#define OBJ_EVENT_PAL_TAG_PICNICKER                      0x116E
+#define OBJ_EVENT_PAL_TAG_OLD_MAN_2                      0x116F
+#define OBJ_EVENT_PAL_TAG_OLD_WOMAN                      0x1170
+#define OBJ_EVENT_PAL_TAG_BALDING_MAN                    0x1171
+#define OBJ_EVENT_PAL_TAG_FAT_MAN                        0x1172
+#define OBJ_EVENT_PAL_TAG_OLD_MAN_1                      0x1173
+#define OBJ_EVENT_PAL_TAG_MAN                            0x1174
+#define OBJ_EVENT_PAL_TAG_CLERK                          0x1175
+#define OBJ_EVENT_PAL_TAG_FISHER                         0x1176
+#define OBJ_EVENT_PAL_TAG_SCIENTIST                      0x1177
+#define OBJ_EVENT_PAL_TAG_SUPER_NERD                     0x1178
+#define OBJ_EVENT_PAL_TAG_HIKER                          0x1179
+#define OBJ_EVENT_PAL_TAG_SAILOR                         0x117A
+#define OBJ_EVENT_PAL_TAG_GENTLEMAN                      0x117B
+#define OBJ_EVENT_PAL_TAG_LASS                           0x117C
+
+#define OBJ_EVENT_PAL_TAG_BROCK                          0x117D
+#define OBJ_EVENT_PAL_TAG_MISTY                          0x117E
+#define OBJ_EVENT_PAL_TAG_SURGE                          0x117F
+#define OBJ_EVENT_PAL_TAG_ERIKA                          0x1180
+#define OBJ_EVENT_PAL_TAG_KOGA                           0x1181
+#define OBJ_EVENT_PAL_TAG_SABRINA                        0x1182
+#define OBJ_EVENT_PAL_TAG_BLAINE                         0x1183
+#define OBJ_EVENT_PAL_TAG_GIOVANNI                       0x1184
+#define OBJ_EVENT_PAL_TAG_LORELEI                        0x1185
+#define OBJ_EVENT_PAL_TAG_BRUNO                          0x1186
+#define OBJ_EVENT_PAL_TAG_AGATHA                         0x1187
+#define OBJ_EVENT_PAL_TAG_LANCE                          0x1188
+#define OBJ_EVENT_PAL_TAG_BLUE                           0x1189
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002

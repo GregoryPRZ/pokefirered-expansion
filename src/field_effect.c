@@ -890,7 +890,7 @@ static void PokeballGlowEffect_TryPlaySe(struct Sprite *sprite)
         sprite->sCounter = 0;
         sprite->sNumFlashed = 0;
         if (sprite->sPlayHealSe)
-            PlayFanfare(MUS_HEAL);
+            PlayFanfare(MUS_HG_HEAL);
     }
 }
 
@@ -2971,8 +2971,8 @@ u32 FldEff_UseSurf(void)
     u8 taskId = CreateTask(Task_FldEffUseSurf, 0xff);
     gTasks[taskId].data[15] = gFieldEffectArguments[0];
     Overworld_ClearSavedMusic();
-    if (Overworld_MusicCanOverrideMapMusic(MUS_SURF))
-        Overworld_ChangeMusicTo(MUS_SURF);
+    if (Overworld_MusicCanOverrideMapMusic(MUS_HG_SURF))
+        Overworld_ChangeMusicTo(MUS_HG_SURF);
     return FALSE;
 }
 

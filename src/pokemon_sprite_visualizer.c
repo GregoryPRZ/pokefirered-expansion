@@ -373,12 +373,19 @@ const u8 gBattleBackgroundNames[][30] =
     [MAP_BATTLE_SCENE_GYM]      = _("GYM                     "),
     [MAP_BATTLE_SCENE_MAGMA]    = _("MAGMA                   "),
     [MAP_BATTLE_SCENE_AQUA]     = _("AQUA                    "),
+    [MAP_BATTLE_SCENE_BROCK]    = _("BROCK                   "),
+    [MAP_BATTLE_SCENE_MISTY]    = _("MISTY                   "),
+    [MAP_BATTLE_SCENE_SURGE]    = _("SURGE                   "),
+    [MAP_BATTLE_SCENE_ERIKA]    = _("ERIKA                   "),
+    [MAP_BATTLE_SCENE_KOGA]     = _("KOGA                    "),
+    [MAP_BATTLE_SCENE_SABRINA]  = _("SABRINA                 "),
+    [MAP_BATTLE_SCENE_BLAINE]   = _("BLAINE                  "),
+    [MAP_BATTLE_SCENE_GIOVANNI] = _("GIOVANNI                "),
     [MAP_BATTLE_SCENE_LORELEI]  = _("LORELEI                 "),
     [MAP_BATTLE_SCENE_BRUNO]    = _("BRUNO                   "),
     [MAP_BATTLE_SCENE_AGATHA]   = _("AGATHA                  "),
     [MAP_BATTLE_SCENE_LANCE]    = _("LANCE                   "),
     [MAP_BATTLE_SCENE_FRONTIER] = _("FRONTIER                "),
-    [MAP_BATTLE_SCENE_LEADER]   = _("LEADER                  "),
     [MAP_BATTLE_SCENE_CHAMPION] = _("CHAMPION                "),
     [MAP_BATTLE_SCENE_GROUDON]  = _("GROUDON                 "),
     [MAP_BATTLE_SCENE_KYOGRE]   = _("KYOGRE                  "),
@@ -919,6 +926,30 @@ static void LoadBattleBg(u8 battleBgType, u8 battleTerrain)
     case MAP_BATTLE_SCENE_GYM:
         battleTerrain = BATTLE_ENVIRONMENT_GYM;
         break;
+    case MAP_BATTLE_SCENE_BROCK:
+        battleTerrain = BATTLE_ENVIRONMENT_BROCK;
+        break;
+    case MAP_BATTLE_SCENE_MISTY:
+        battleTerrain = BATTLE_ENVIRONMENT_MISTY;
+        break;
+    case MAP_BATTLE_SCENE_SURGE:
+        battleTerrain = BATTLE_ENVIRONMENT_SURGE;
+        break;
+    case MAP_BATTLE_SCENE_ERIKA:
+        battleTerrain = BATTLE_ENVIRONMENT_ERIKA;
+        break;
+    case MAP_BATTLE_SCENE_KOGA:
+        battleTerrain = BATTLE_ENVIRONMENT_KOGA;
+        break;
+    case MAP_BATTLE_SCENE_SABRINA:
+        battleTerrain = BATTLE_ENVIRONMENT_SABRINA;
+        break;
+    case MAP_BATTLE_SCENE_BLAINE:
+        battleTerrain = BATTLE_ENVIRONMENT_BLAINE;
+        break;
+    case MAP_BATTLE_SCENE_GIOVANNI:
+        battleTerrain = BATTLE_ENVIRONMENT_GIOVANNI;
+        break;
     case MAP_BATTLE_SCENE_MAGMA:
         // todo
         break;
@@ -939,9 +970,6 @@ static void LoadBattleBg(u8 battleBgType, u8 battleTerrain)
         break;
     case MAP_BATTLE_SCENE_FRONTIER:
         // todo
-        break;
-    case MAP_BATTLE_SCENE_LEADER:
-        battleTerrain = BATTLE_ENVIRONMENT_LEADER;
         break;
     case MAP_BATTLE_SCENE_CHAMPION:
         battleTerrain = BATTLE_ENVIRONMENT_CHAMPION;

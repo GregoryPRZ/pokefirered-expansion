@@ -2,7 +2,7 @@
   "id": "MAP_THREE_ISLAND_PORT",
   "name": "ThreeIsland_Port",
   "layout": "LAYOUT_THREE_ISLAND_PORT",
-  "music": "MUS_ROUTE3",
+  "music": "MUS_HG_ROUTE3",
   "region_map_section": "MAPSEC_THREE_ISLE_PORT",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -87,10 +87,6 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
-  "bg_events": [
-
-  ]
+  "coord_events": [],
+  "bg_events": []
 }

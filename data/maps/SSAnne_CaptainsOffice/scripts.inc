@@ -8,7 +8,7 @@ SSAnne_CaptainsOffice_EventScript_Captain::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	message SSAnne_CaptainsOffice_Text_RubbedCaptainsBack
 	waitmessage
-	playfanfare MUS_HEAL
+	playfanfare MUS_HG_HEAL
 	waitfanfare
 	call EventScript_RestorePrevTextColor
 	delay 50

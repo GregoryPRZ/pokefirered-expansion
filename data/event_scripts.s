@@ -1085,13 +1085,13 @@ Common_ShowEasyChatScreen::
 
 @ Unused
 EventScript_GymBadgeFanfare::
-	playfanfare MUS_OBTAIN_BADGE
+	playfanfare MUS_HG_OBTAIN_BADGE
 	waitfanfare
 	return
 
 EventScript_OutOfCenterPartyHeal::
 	fadescreenswapbuffers FADE_TO_BLACK
-	playfanfare MUS_HEAL
+	playfanfare MUS_HG_HEAL
 	waitfanfare
 	special HealPlayerParty
 	callnative UpdateFollowingPokemon
@@ -1121,7 +1121,7 @@ EventScript_ChangePokemonNickname::
 @ Unused
 EventScript_HandOverItem::
 	bufferitemname STR_VAR_1, VAR_0x8004
-	playfanfare MUS_OBTAIN_TMHM
+	playfanfare MUS_HG_OBTAIN_TMHM
 	message Text_HandedOverItem
 	waitmessage
 	waitfanfare

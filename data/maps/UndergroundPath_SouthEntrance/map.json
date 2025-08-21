@@ -2,7 +2,7 @@
   "id": "MAP_UNDERGROUND_PATH_SOUTH_ENTRANCE",
   "name": "UndergroundPath_SouthEntrance",
   "layout": "LAYOUT_UNDERGROUND_PATH_ENTRANCE",
-  "music": "MUS_PEWTER",
+  "music": "MUS_HG_PEWTER",
   "region_map_section": "MAPSEC_UNDERGROUND_PATH",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -60,10 +60,6 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [
-
-  ],
-  "bg_events": [
-
-  ]
+  "coord_events": [],
+  "bg_events": []
 }

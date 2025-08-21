@@ -2,7 +2,7 @@
   "id": "MAP_FOUR_ISLAND",
   "name": "FourIsland",
   "layout": "LAYOUT_FOUR_ISLAND",
-  "music": "MUS_SEVII_45",
+  "music": "MUS_HG_VIOLET",
   "region_map_section": "MAPSEC_FOUR_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -244,9 +244,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

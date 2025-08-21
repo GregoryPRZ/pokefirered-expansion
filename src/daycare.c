@@ -2128,10 +2128,10 @@ static void Task_EggHatchPlayBGM(u8 taskID)
         StopMapMusic();
     }
     if (gTasks[taskID].data[0] == 1)
-        PlayBGM(MUS_EVOLUTION_INTRO);
+        PlayBGM(MUS_HG_EVOLUTION_NO_INTRO);
     if (gTasks[taskID].data[0] > 60)
     {
-        PlayBGM(MUS_EVOLUTION);
+        PlayBGM(MUS_HG_EVOLUTION);
         DestroyTask(taskID);
         // UB: task is destroyed, yet the value is incremented
     }
@@ -2186,7 +2186,7 @@ static void CB2_EggHatch_1(void)
         DayCare_GetMonNickname(&gPlayerParty[sEggHatchData->eggPartyID], gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_HatchedFromEgg);
         EggHatchPrintMessage(sEggHatchData->windowId, gStringVar4, 0, 3, 0xFF);
-        PlayFanfare(MUS_EVOLVED);
+        PlayFanfare(MUS_HG_EVOLVED);
         sEggHatchData->CB2_state++;
         PutWindowTilemap(sEggHatchData->windowId);
         CopyWindowToVram(sEggHatchData->windowId, COPYWIN_FULL);

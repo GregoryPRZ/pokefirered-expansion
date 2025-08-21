@@ -395,12 +395,7 @@ void CB2_InitTitleScreen(void)
             sTitleScreenTimerTaskId = CreateTask(Task_TitleScreenTimer, 2);
             SetVBlankCallback(VBlankCB);
             SetMainCallback2(CB2_TitleScreenRun);
-		if (gSaveBlock1Ptr->optionsMusicSet == OPTIONS_MUSIC_FIRERED)
-			m4aSongNumStart(MUS_TITLE);
-		else if (gSaveBlock1Ptr->optionsMusicSet == OPTIONS_MUSIC_HGSS)
 			m4aSongNumStart(MUS_HG_TITLE);
-		else 
-			m4aSongNumStart(MUS_TITLE);
         }
         return;
     }
