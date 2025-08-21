@@ -23,6 +23,9 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/quest_log.h"
+#include "pokemon_icon.h"
+#include "pokemon.h"
+#include "gba/types.h"
 
 #define TAG_SCROLL_ARROW 110
 
@@ -113,6 +116,10 @@ static EWRAM_DATA struct {
 static EWRAM_DATA void *sTilemapBuffer = NULL;
 static EWRAM_DATA struct ListMenuItem * sListMenuItemsBuffer = NULL;
 static EWRAM_DATA u8 (* sListMenuStringsBuffer)[29] = NULL;
+static EWRAM_DATA u8    spriteIdData[PARTY_SIZE] = {};
+static EWRAM_DATA u16   spriteIdPalette[PARTY_SIZE] = {};
+
+extern const struct SpritePalette gMonIconPaletteTable[6];
 
 static void CB2_SetUpTMCaseUI_Blocking(void);
 static bool8 DoSetUpTMCaseUI(void);
@@ -168,12 +175,15 @@ static void PrintPlayersMoney(void);
 static void HandleCreateYesNoMenu(u8 taskId, const struct YesNoFuncTable * ptrs);
 static u8 AddContextMenu(u8 * windowId, u8 windowIndex);
 static void RemoveContextMenu(u8 * windowId);
-static u8 CreateDiscSprite(u16 itemId);
-static void SetDiscSpriteAnim(struct Sprite *sprite, u8 tmIdx);
-static void TintDiscpriteByType(u8 type);
-static void SetDiscSpritePosition(struct Sprite *sprite, u8 tmIdx);
-static void SwapDisc(u8 spriteId, u16 itemId);
-static void SpriteCB_SwapDisc(struct Sprite *sprite);
+//static u8 CreateDiscSprite(u16 itemId);
+//static void SetDiscSpriteAnim(struct Sprite *sprite, u8 tmIdx);
+//static void TintDiscpriteByType(u8 type);
+//static void SetDiscSpritePosition(struct Sprite *sprite, u8 tmIdx);
+//static void SwapDisc(u8 spriteId, u16 itemId);
+//static void SpriteCB_SwapDisc(struct Sprite *sprite);
+static void DrawPartyMonIcons(void);
+static void TintPartyMonIcons(u8 tm);
+static void DestroyPartyMonIcons(void);
 
 static const struct BgTemplate sBGTemplates[] = {
     {
@@ -238,9 +248,9 @@ static const u8 sTextColors[][3] = {
 static const struct WindowTemplate sWindowTemplates[] = {
     [WIN_LIST] = {
         .bg = 0,
-        .tilemapLeft = 10,
+        .tilemapLeft = 14,
         .tilemapTop = 1,
-        .width = 19,
+        .width = 15,
         .height = 10,
         .paletteNum = 15,
         .baseBlock = 0x081
@@ -260,7 +270,7 @@ static const struct WindowTemplate sWindowTemplates[] = {
         .tilemapTop = 15,
         .width = 15,
         .height = 4,
-        .paletteNum = 13,
+        .paletteNum = 15,
         .baseBlock = 0x1f9
     },
     [WIN_TITLE] = {
@@ -518,6 +528,7 @@ static bool8 DoSetUpTMCaseUI(void)
         break;
     case 11:
         DrawMoveInfoLabels();
+        DrawPartyMonIcons();
         gMain.state++;
         break;
     case 12:
@@ -542,7 +553,7 @@ static bool8 DoSetUpTMCaseUI(void)
         gMain.state++;
         break;
     case 16:
-        sTMCaseDynamicResources->discSpriteId = CreateDiscSprite(GetBagItemId(POCKET_TM_HM, sTMCaseStaticResources.scrollOffset + sTMCaseStaticResources.selectedRow));
+        //sTMCaseDynamicResources->discSpriteId = CreateDiscSprite(GetBagItemId(POCKET_TM_HM, sTMCaseStaticResources.scrollOffset + sTMCaseStaticResources.selectedRow));
         gMain.state++;
         break;
     case 17:
@@ -704,7 +715,7 @@ static void List_MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu *li
     if (onInit != TRUE)
     {
         PlaySE(SE_SELECT);
-        SwapDisc(sTMCaseDynamicResources->discSpriteId, itemId);
+        //SwapDisc(sTMCaseDynamicResources->discSpriteId, itemId);
     }
     PrintDescription(itemIndex);
     PrintMoveInfo(itemId);
@@ -738,12 +749,16 @@ static void List_ItemPrintFunc(u8 windowId, u32 itemIndex, u8 y)
 static void PrintDescription(s32 itemIndex)
 {
     const u8 * str;
+    u16 itemId = GetBagItemId(POCKET_TM_HM, itemIndex);
     if (itemIndex != LIST_CANCEL)
-        str = GetItemDescription(GetBagItemId(POCKET_TM_HM, itemIndex));
+        str = GetItemDescription(itemId);
     else
         str = gText_TMCaseWillBePutAway;
     FillWindowPixelBuffer(WIN_DESCRIPTION, 0);
     TMCase_Print(WIN_DESCRIPTION, FONT_NORMAL, str, 2, 3, 1, 0, 0, COLOR_LIGHT);
+
+    // update icons
+    TintPartyMonIcons(itemId - ITEM_TM01);
 }
 
 // Darkens (or subsequently lightens) the blue bg tiles around the description window when a TM/HM is selected.
@@ -1530,7 +1545,7 @@ static void PrintMessageWithFollowupTask(u8 taskId, u8 fontId, const u8 * str, T
 
 static void PrintTitle(void)
 {
-    u32 distance = 72 - GetStringWidth(FONT_NORMAL_COPY_1, gText_TMCase, 0);
+    u32 distance = 100 - GetStringWidth(FONT_NORMAL_COPY_1, gText_TMCase, 0);
     AddTextPrinterParameterized3(WIN_TITLE, FONT_NORMAL_COPY_1, distance / 2, 1, sTextColors[COLOR_LIGHT], 0, gText_TMCase);
 }
 
@@ -1625,7 +1640,7 @@ static void RemoveContextMenu(u8 * windowId)
     *windowId = WINDOW_NONE;
 }
 
-static u8 CreateDiscSprite(u16 itemId)
+/*static u8 CreateDiscSprite(u16 itemId)
 {
     u8 spriteId = CreateSprite(&sSpriteTemplate_Disc, DISC_BASE_X, DISC_BASE_Y, 0);
     u8 tmIdx;
@@ -1729,5 +1744,128 @@ static void SpriteCB_SwapDisc(struct Sprite *sprite)
             sprite->callback = SpriteCallbackDummy;
         else
             sprite->y2 -= DISC_Y_MOVE;
+    }
+} */
+
+
+#define sMonIconStill data[3]
+static void SpriteCb_MonIcon(struct Sprite *sprite)
+{
+    if (!sprite->sMonIconStill)
+        UpdateMonIconFrame(sprite);
+}
+#undef sMonIconStill
+
+#define MON_ICON_START_X  0x10
+#define MON_ICON_START_Y  0x2a
+#define MON_ICON_PADDING  0x20
+
+
+void LoadMonIconPalettesTinted(void)
+{
+    u8 i;
+    for (i = 0; i < ARRAY_COUNT(gMonIconPaletteTable); i++)
+    {
+        LoadSpritePalette(&gMonIconPaletteTable[i]);
+        TintPalette_GrayScale2(&gPlttBufferUnfaded[0x170 + i*16], 16);
+    }
+}
+
+
+static void DrawPartyMonIcons(void)
+{
+    u8 i;
+    u16 species;
+    u8 icon_x = 0;
+    u8 icon_y = 0;
+
+    LoadMonIconPalettesTinted();
+
+    for (i = 0; i < gPlayerPartyCount; i++)
+    {
+        //calc icon position (centered)
+        if (gPlayerPartyCount == 1)
+        {
+            icon_x = MON_ICON_START_X + MON_ICON_PADDING;
+            icon_y = MON_ICON_START_Y + MON_ICON_PADDING*0.5;
+        }
+        else if (gPlayerPartyCount == 2)
+        {
+            icon_x = i < 2 ? MON_ICON_START_X + MON_ICON_PADDING*0.5 + MON_ICON_PADDING * i : MON_ICON_START_X + MON_ICON_PADDING*0.5 + MON_ICON_PADDING * (i - 2);
+            icon_y = MON_ICON_START_Y + MON_ICON_PADDING*0.5;
+        }else if (gPlayerPartyCount == 3)
+        {
+            icon_x = i < 3 ? MON_ICON_START_X + MON_ICON_PADDING * i : MON_ICON_START_X + MON_ICON_PADDING * (i - 3);
+            icon_y = MON_ICON_START_Y + MON_ICON_PADDING*0.5;
+        }
+        else if (gPlayerPartyCount == 4)
+        {
+            icon_x = i < 2 ? MON_ICON_START_X + MON_ICON_PADDING*0.5 + MON_ICON_PADDING * i : MON_ICON_START_X + MON_ICON_PADDING*0.5 + MON_ICON_PADDING * (i - 2);
+            icon_y = i < 2 ? MON_ICON_START_Y : MON_ICON_START_Y + MON_ICON_PADDING;
+        }
+        else
+        {
+            icon_x = i < 3 ? MON_ICON_START_X + MON_ICON_PADDING * i : MON_ICON_START_X + MON_ICON_PADDING * (i - 3);
+            icon_y = i < 3 ? MON_ICON_START_Y : MON_ICON_START_Y + MON_ICON_PADDING;
+        }
+        //get species
+        species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
+
+        //create icon sprite
+        #ifndef POKEMON_EXPANSION
+            spriteIdData[i] = CreateMonIcon(species, SpriteCb_MonIcon, icon_x, icon_y, 1, GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY));
+        #else
+            spriteIdData[i] = CreateMonIcon(species, SpriteCb_MonIcon, icon_x, icon_y, 1, GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY));
+        #endif
+
+        //Set priority, stop movement and save original palette position
+        gSprites[spriteIdData[i]].oam.priority = 0;
+        StartSpriteAnim(&gSprites[spriteIdData[i]], 4); //full stop
+        spriteIdPalette[i] = gSprites[spriteIdData[i]].oam.paletteNum; //save correct palette number to array
+    }
+}
+
+static void TintPartyMonIcons(u8 tm)
+{
+    u8 i;
+    u16 species;
+    u16 itemId;
+    u16 moveId;
+
+    // Convert TM number to item ID, then to move ID
+    itemId = ITEM_TM01 + tm;
+    moveId = ItemIdToBattleMoveId(itemId);
+
+    // Set up blending for grayscale effect
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_ALL);
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(8, 8)); // 50% blend for grayscale
+
+    for (i = 0; i < gPlayerPartyCount; i++)
+    {
+        if (spriteIdData[i] != SPRITE_NONE)
+        {
+            species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
+            
+            if (!CanLearnTeachableMove(species, moveId)) 
+            {
+                // Apply grayscale tint for Pokemon that can't learn the move
+                gSprites[spriteIdData[i]].oam.objMode = ST_OAM_OBJ_BLEND;
+            }
+            else
+            {
+                // Normal coloring for Pokemon that can learn the move
+                gSprites[spriteIdData[i]].oam.objMode = ST_OAM_OBJ_NORMAL;
+            }
+        }
+    }
+}
+
+static void DestroyPartyMonIcons(void)
+{
+    u8 i;
+    for (i = 0; i < gPlayerPartyCount; i++)
+    {
+        FreeAndDestroyMonIconSprite(&gSprites[spriteIdData[i]]);
+        FreeMonIconPalettes();
     }
 }
