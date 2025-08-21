@@ -5,7 +5,6 @@
 #include "m4a.h"
 #include "main.h"
 #include "pokemon.h"
-#include "quest_log.h"
 #include "constants/cries.h"
 #include "constants/songs.h"
 #include "constants/global.h"
@@ -20,7 +19,6 @@ struct Fanfare
 
 // TODO: what are these
 extern u8 gDisableMapMusicChangeOnMapLoad;
-extern u8 gDisableHelpSystemVolumeReduce;
 
 EWRAM_DATA struct MusicPlayerInfo *gMPlay_PokemonCry = NULL;
 EWRAM_DATA u8 gPokemonCryBGMDuckingCounter = 0;
@@ -213,17 +211,11 @@ bool8 IsNotWaitingForBGMStop(void)
 void PlayFanfareByFanfareNum(u8 fanfareNum)
 {
     u16 songNum;
-    if(gQuestLogState == QL_STATE_PLAYBACK)
-    {
-        sFanfareCounter = 0xFF;
-    }
-    else
-    {
-        m4aMPlayStop(&gMPlayInfo_BGM);
-        songNum = sFanfares[fanfareNum].songNum;
-        sFanfareCounter = sFanfares[fanfareNum].duration;
-        m4aSongNumStart(songNum);
-    }
+
+    m4aMPlayStop(&gMPlayInfo_BGM);
+    songNum = sFanfares[fanfareNum].songNum;
+    sFanfareCounter = sFanfares[fanfareNum].duration;
+    m4aSongNumStart(songNum);
 }
 
 bool8 WaitFanfare(bool8 stop)
@@ -407,11 +399,8 @@ void PlayCry_DuckNoRestore(u16 species, s8 pan, u8 mode)
 
 void PlayCry_Script(u16 species, u8 mode)
 {
-    if (!QL_IS_PLAYBACK_STATE) // This check is exclusive to FR/LG
-    {
-        m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 85);
-        PlayCryInternal(species, 0, CRY_VOLUME, CRY_PRIORITY_NORMAL, mode);
-    }
+    m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 85);
+    PlayCryInternal(species, 0, CRY_VOLUME, CRY_PRIORITY_NORMAL, mode);
     gPokemonCryBGMDuckingCounter = 2;
     RestoreBGMVolumeAfterPokemonCry();
 }
@@ -596,8 +585,8 @@ void PlayBGM(u16 songNum)
 
 void PlaySE(u16 songNum)
 {
-    if (gDisableMapMusicChangeOnMapLoad == 0 && gQuestLogState != QL_STATE_PLAYBACK)
-            m4aSongNumStart(songNum);
+    if (gDisableMapMusicChangeOnMapLoad == 0)
+        m4aSongNumStart(songNum);
 }
 
 void PlaySE12WithPanning(u16 songNum, s8 pan)
@@ -658,12 +647,10 @@ bool8 IsSpecialSEPlaying(void)
 
 void SetBGMVolume_SuppressHelpSystemReduction(u16 volume)
 {
-    gDisableHelpSystemVolumeReduce = TRUE;
     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, volume);
 }
 
 void BGMVolumeMax_EnableHelpSystemReduction(void)
 {
-    gDisableHelpSystemVolumeReduce = FALSE;
     m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 256);
 }

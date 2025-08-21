@@ -4,7 +4,6 @@
 #include "event_object_movement.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
-#include "quest_log.h"
 #include "script.h"
 #include "script_movement.h"
 #include "task.h"
@@ -119,8 +118,6 @@ static const TrainerSeeFunc sTrainerSeeFuncList2[] = {
 bool8 CheckForTrainersWantingBattle(void)
 {
     u8 i;
-    if (QL_IsTrainerSightDisabled() == TRUE)
-        return FALSE;
 
     if (FlagGet(OW_FLAG_NO_TRAINER_SEE))
         return FALSE;

@@ -1,5 +1,4 @@
 EventScript_CutTree::
-	goto_if_questlog EventScript_ReleaseEnd
 	lockall
 	checkfieldmoveusable FIELD_MOVE_CUT
 	goto_if_eq VAR_RESULT, FALSE, EventScript_CantCutTree
@@ -58,7 +57,6 @@ EventScript_FldEffRockSmash::
 	goto EventScript_RockSmashCommon
 
 EventScript_RockSmash::
-	goto_if_questlog EventScript_ReleaseEnd
 	lockall
 	checkfieldmoveusable FIELD_MOVE_ROCK_SMASH
 	goto_if_eq VAR_RESULT, FALSE, EventScript_CantSmashRock
@@ -219,7 +217,6 @@ Text_MonMaySmashRock::
 	.string "may be able to smash it.$"
 
 EventScript_StrengthBoulder::
-	goto_if_questlog EventScript_ReleaseEnd
 	lockall
 	goto_if_set FLAG_SYS_USE_STRENGTH, EventScript_AlreadyUsedStrength
 	checkfieldmoveusable FIELD_MOVE_STRENGTH
@@ -276,7 +273,6 @@ Text_StrengthMadeMovingBouldersPossible::
 	.string "boulders around.$"
 
 EventScript_Waterfall::
-	goto_if_questlog EventScript_ReleaseEnd
 	lockall
 	checkfieldmoveusable FIELD_MOVE_WATERFALL
 	goto_if_eq VAR_RESULT, FALSE, EventScript_WaterCrashingDown

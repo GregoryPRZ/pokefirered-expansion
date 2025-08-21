@@ -1,13 +1,11 @@
 #include "global.h"
 #include "gflib.h"
 #include "dynamic_placeholder_text_util.h"
-#include "help_system.h"
 #include "link.h"
 #include "link_rfu.h"
 #include "load_save.h"
 #include "menu.h"
 #include "overworld.h"
-#include "quest_log.h"
 #include "save.h"
 #include "scanline_effect.h"
 #include "strings.h"
@@ -319,7 +317,6 @@ void EnterUnionRoomChat(void)
     sWork = Alloc(sizeof(struct UnionRoomChat));
     InitChatWork(sWork);
     gKeyRepeatStartDelay = 20;
-    HelpSystem_DisableToggleWithRButton();
     SetVBlankCallback(NULL);
     SetMainCallback2(CB2_LoadInterface);
 }
@@ -383,7 +380,6 @@ static void CB2_LoadInterface(void)
         if (!gPaletteFade.active)
         {
             SetMainCallback2(CB2_UnionRoomChatMain);
-            SetQuestLogEvent(QL_EVENT_USED_UNION_ROOM_CHAT, NULL);
             sWork->handleInputTask = CreateTask(Task_HandlePlayerInput, 8);
             sWork->receiveMessagesTask = CreateTask(Task_ReceiveChatMessage, 7);
             LoadWirelessStatusIndicatorSpriteGfx();
@@ -1009,7 +1005,6 @@ static void ChatEntryRoutine_SaveAndExit(void)
     case 13:
         if (!gPaletteFade.active)
         {
-            HelpSystem_EnableToggleWithRButton();
             UnionRoomChat_FreeGraphicsWork();
             FreeChatWork();
             SetMainCallback2(CB2_ReturnToField);

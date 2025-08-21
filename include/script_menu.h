@@ -46,7 +46,6 @@ void ScriptMenu_DisplayPCStartupPrompt(void);
 int ConvertPixelWidthToTileWidth(int width);
 
 bool8 (*ScriptMenu_HidePokemonPic(void))(void);
-void QL_DestroyAbortedDisplay(void);
 void PicboxCancel(void);
 int DisplayTextAndGetWidth(const u8 *str, int width);
 int ScriptMenu_AdjustLeftCoordFromWidth(int left, int width);

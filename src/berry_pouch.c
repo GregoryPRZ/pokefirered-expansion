@@ -32,7 +32,6 @@
 #include "pokemon_storage_system.h"
 #include "constants/items.h"
 #include "constants/songs.h"
-#include "constants/quest_log.h"
 
 struct BerryPouchStruct_203F36C
 {
@@ -1486,7 +1485,6 @@ static void Task_SellBerries_PlaySfxAndRemoveBerries(u8 taskId)
     PlaySE(SE_SHOP);
     RemoveBagItem(gSpecialVar_ItemId, tItemCount);
     AddMoney(&gSaveBlock1Ptr->money, GetItemSellPrice(gSpecialVar_ItemId) * tItemCount);
-    RecordItemTransaction(gSpecialVar_ItemId, tItemCount, QL_EVENT_SOLD_ITEM - QL_EVENT_USED_POKEMART);
     DestroyListMenuTask(tListTaskId, &sStaticCnt.listMenuScrollOffset, &sStaticCnt.listMenuSelectedRow);
     SortAndCountBerries();
     SanitizeListMenuSelectionParams();

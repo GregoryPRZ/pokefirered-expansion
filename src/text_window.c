@@ -4,9 +4,11 @@
 #include "window.h"
 
 #include "graphics.h"
-#include "help_message.h"
 #include "palette.h"
 #include "text_window.h"
+
+
+const u8 gHelpMessageWindow_Gfx[] = INCBIN_U8("graphics/help_system/msg_window.4bpp");
 
 static const u16 gSignpostWindow_Gfx[] = INCBIN_U16("graphics/text_window/signpost.4bpp");
 static const u16 sStdTextWindow_Gfx[]  = INCBIN_U16("graphics/text_window/std.4bpp");

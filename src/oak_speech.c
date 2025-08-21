@@ -4,7 +4,6 @@
 #include "decompress.h"
 #include "event_scripts.h"
 #include "gpu_regs.h"
-#include "help_system.h"
 #include "malloc.h"
 #include "math_util.h"
 #include "menu.h"
@@ -724,7 +723,6 @@ static void Task_NewGameScene(u8 taskId)
         ResetSpriteData();
         FreeAllSpritePalettes();
         ResetTempTileDataBuffers();
-        SetHelpContext(HELPCONTEXT_NEW_GAME);
         break;
     case 1:
         sOakSpeechResources = AllocZeroed(sizeof(*sOakSpeechResources));

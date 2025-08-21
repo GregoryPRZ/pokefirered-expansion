@@ -9,7 +9,6 @@
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
 #include "graphics.h"
-#include "help_system.h"
 #include "international_string_util.h"
 #include "item.h"
 #include "item_icon.h"
@@ -34,7 +33,6 @@
 #include "text_window.h"
 #include "tm_case.h"
 #include "constants/items.h"
-#include "constants/quest_log.h"
 #include "constants/songs.h"
 
 #define TAG_POCKET_SCROLL_ARROW 110
@@ -844,10 +842,6 @@ static bool8 SetupBagMenu(void)
         gMain.state++;
         break;
     case 20:
-        if (gBagPosition.location == ITEMMENULOCATION_ITEMPC)
-            SetHelpContext(HELPCONTEXT_PLAYERS_PC_ITEMS);
-        else
-            SetHelpContext(HELPCONTEXT_BAG);
         BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         gPaletteFade.bufferTransferDisabled = FALSE;
         gMain.state++;
@@ -2113,7 +2107,6 @@ static void SellItem(u8 taskId)
     PlaySE(SE_SHOP);
     RemoveBagItem(gSpecialVar_ItemId, tItemCount);
     AddMoney(&gSaveBlock1Ptr->money, GetItemSellPrice(gSpecialVar_ItemId) * tItemCount);
-    RecordItemTransaction(gSpecialVar_ItemId, tItemCount, QL_EVENT_SOLD_ITEM - QL_EVENT_USED_POKEMART);
     DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
     UpdatePocketItemList(gBagPosition.pocket);
     UpdatePocketListPosition(gBagPosition.pocket);
@@ -2199,7 +2192,6 @@ static void TryDepositItem(u8 taskId)
     }
     else if (AddPCItem(gSpecialVar_ItemId, tItemCount) == TRUE)
     {
-        ItemUse_SetQuestLogEvent(QL_EVENT_DEPOSITED_ITEM_PC, 0, gSpecialVar_ItemId, 0xFFFF);
         CopyItemName(gSpecialVar_ItemId, gStringVar1);
         ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringExpandPlaceholders(gStringVar4, sText_DepositedVar2Var1s);

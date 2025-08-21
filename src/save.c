@@ -1,6 +1,15 @@
 #include "global.h"
-
 #include "gba/flash_internal.h"
+#include "decompress.h"
+#include "fieldmap.h"
+#include "link.h"
+#include "load_save.h"
+#include "overworld.h"
+#include "pokemon_storage_system.h"
+#include "save.h"
+#include "save_failed_screen.h"
+#include "task.h"
+#include "trainer_tower.h"
 
 #include "agb_flash.h"
 #include "decompress.h"
@@ -634,7 +643,7 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
 
     gSaveCounter = 0;
     gLastWrittenSector = 0;
-    return SAVE_STATUS_INVALID;
+    return SAVE_STATUS_CORRUPT;
 }
 
 static u8 TryLoadSaveSector(u8 sectorId, u8 *data, u16 size)
@@ -654,7 +663,7 @@ static u8 TryLoadSaveSector(u8 sectorId, u8 *data, u16 size)
             return SAVE_STATUS_OK;
         }
         else
-            return SAVE_STATUS_INVALID;
+            return SAVE_STATUS_CORRUPT;
 
     }
     else
@@ -710,13 +719,16 @@ u8 HandleSavingData(u8 saveType)
     UpdateSaveAddresses();
     switch (saveType)
     {
-    case SAVE_HALL_OF_FAME_ERASE_BEFORE: // Unused
+    case SAVE_HALL_OF_FAME_ERASE_BEFORE:
+        // Unused. Erases the special save sectors (HOF, Trainer Hill, Recorded Battle)
+        // before overwriting HOF.
         for (i = SECTOR_ID_HOF_1; i < SECTORS_COUNT; i++)
             EraseFlashSector(i);
         // fallthrough
     case SAVE_HALL_OF_FAME:
         if (GetGameStat(GAME_STAT_ENTERED_HOF) < 999)
             IncrementGameStat(GAME_STAT_ENTERED_HOF);
+
         tempAddr = gDecompressionBuffer;
         HandleWriteSectorNBytes(SECTOR_ID_HOF_1, tempAddr, SECTOR_DATA_SIZE);
         HandleWriteSectorNBytes(SECTOR_ID_HOF_2, tempAddr + SECTOR_DATA_SIZE, SECTOR_DATA_SIZE);

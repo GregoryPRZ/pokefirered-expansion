@@ -986,6 +986,11 @@
 	.byte \textTop
 	.endm
 
+	@ Does nothing.
+	.macro nop0x79
+	.byte 0x79
+	.endm
+
 	@ Gives the player a Pokémon of the specified species and level, and allows to customize extra parameters.
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_GIVEN_TO_PC, or MON_CANT_GIVE depending on the outcome.
 	.macro givemon species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, gmaxFactor, teraType, dmaxLevel
@@ -2005,13 +2010,6 @@
 	.macro set_gym_trainers gym:req
 	setvar VAR_0x8008, \gym
 	call EventScript_SetGymTrainers
-	.endm
-
-	@ Jumps to dest if the Quest Log is currently showing playback scenes (dest is usually a release/end)
-	.macro goto_if_questlog dest:req
-	special GetQuestLogState
-	compare VAR_RESULT, 2
-	goto_if_eq \dest
 	.endm
 
 	@ Prints a braille message, then waits for users input.

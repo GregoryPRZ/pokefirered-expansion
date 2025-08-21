@@ -15,7 +15,6 @@
 #include "mystery_gift_server.h"
 #include "mystery_gift_client.h"
 #include "wonder_news.h"
-#include "help_system.h"
 #include "strings.h"
 #include "decompress.h"
 #include "constants/cable_club.h"
@@ -1566,7 +1565,6 @@ static void Task_MysteryGift(u8 taskId)
         break;
     case MG_STATE_EXIT:
         CloseLink();
-        HelpSystem_Enable();
         Free(data->clientMsg);
         DestroyTask(taskId);
         SetMainCallback2(MainCB_FreeAllBuffersAndReturnToInitTitleScreen);

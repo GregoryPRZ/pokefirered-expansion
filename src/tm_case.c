@@ -22,7 +22,6 @@
 #include "strings.h"
 #include "constants/items.h"
 #include "constants/songs.h"
-#include "constants/quest_log.h"
 #include "pokemon_icon.h"
 #include "pokemon.h"
 #include "gba/types.h"
@@ -1315,7 +1314,6 @@ static void Task_DoSaleOfTMs(u8 taskId)
     PlaySE(SE_SHOP);
     RemoveBagItem(gSpecialVar_ItemId, tItemCount);
     AddMoney(&gSaveBlock1Ptr->money, GetItemSellPrice(gSpecialVar_ItemId) * tItemCount);
-    RecordItemTransaction(gSpecialVar_ItemId, tItemCount, QL_EVENT_SOLD_ITEM - QL_EVENT_USED_POKEMART);
     DestroyListMenuTask(tListTaskId, &sTMCaseStaticResources.scrollOffset, &sTMCaseStaticResources.selectedRow);
     TMCaseSetup_GetTMCount();
     TMCaseSetup_InitListMenuPositions();

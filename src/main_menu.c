@@ -3,14 +3,12 @@
 #include "gflib.h"
 
 #include "event_data.h"
-#include "help_system.h"
 #include "pokedex.h"
 #include "menu.h"
 #include "rtc.h"
 #include "link.h"
 #include "oak_speech.h"
 #include "overworld.h"
-#include "quest_log.h"
 #include "mystery_gift_menu.h"
 #include "save.h"
 #include "scanline_effect.h"
@@ -243,7 +241,7 @@ static void Task_SetWin0BldRegsAndCheckSaveFile(u8 taskId)
             // gTasks[taskId].func = Task_SetWin0BldRegsNoSaveFileCheck;
             gTasks[taskId].func = Task_MainMenuCheckBattery;
             break;
-        case SAVE_STATUS_INVALID:
+        case SAVE_STATUS_CORRUPT:
             SetStdFrame0OnBg(0);
             gTasks[taskId].tMenuType = MAIN_MENU_NEWGAME;
             PrintSaveErrorStatus(taskId, gText_SaveFileHasBeenDeleted);
@@ -539,11 +537,11 @@ static void Task_ExecuteMainMenuSelection(u8 taskId)
             gPlttBufferFaded[0] = RGB_BLACK;
             gExitStairsMovementDisabled = FALSE;
             FreeAllWindowBuffers();
-            TryStartQuestLogPlayback(taskId);
+            SetMainCallback2(CB2_ContinueSavedGame);
+            DestroyTask(taskId);
             break;
         case MAIN_MENU_MYSTERYGIFT:
             SetMainCallback2(CB2_InitMysteryGift);
-            HelpSystem_Disable();
             FreeAllWindowBuffers();
             DestroyTask(taskId);
             break;

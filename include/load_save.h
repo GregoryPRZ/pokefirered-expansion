@@ -48,7 +48,6 @@ void CopyPartyAndObjectsFromSave(void);
 void LoadPlayerBag(void);
 void SavePlayerBag(void);
 void SetSaveBlocksPointers(u16 offset);
-void MoveSaveBlocks_ResetHeap(void);
 void ClearContinueGameWarpStatus2(void);
 void SetContinueGameWarpStatusToDynamicWarp(void);
 void SetContinueGameWarpStatus(void);

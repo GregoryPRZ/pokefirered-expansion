@@ -23,6 +23,7 @@
 
 // TM config
 #define I_REUSABLE_TMS          TRUE       // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
+#define I_DISABLE_ITEM_ANIMATIONS FALSE     // If TRUE, disables item consumption animations and transitions when using TMs/HMs or other items.
 
 // Exp. Share config
 // To use this feature, replace the 0 with the flag ID you're assigning it to.

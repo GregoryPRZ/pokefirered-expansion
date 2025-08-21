@@ -48,7 +48,6 @@ void Task_UseDigEscapeRopeOnField(u8 taskId);
 u8 CanUseEscapeRopeOnCurrMap(void);
 u8 CheckIfItemIsTMHMOrEvolutionStone(u16 itemId);
 void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8);
-void ItemUse_SetQuestLogEvent(u8, struct Pokemon *, u16, u16);
 void FieldCB_UseItemOnField(void);
 
 enum {

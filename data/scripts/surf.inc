@@ -1,5 +1,4 @@
 EventScript_UseSurf::
-	goto_if_questlog EventScript_UseSurfEnd
 	checkfieldmoveusable FIELD_MOVE_SURF
 	goto_if_eq VAR_RESULT, FALSE, EventScript_UseSurfEnd
 	playse SE_SELECT

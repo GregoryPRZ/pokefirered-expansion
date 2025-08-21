@@ -20,6 +20,7 @@
 #include "constants/easy_chat.h"
 #include "constants/items.h"
 #include "config/save.h"
+#include "config/item.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");

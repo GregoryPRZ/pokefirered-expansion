@@ -12,7 +12,6 @@
 #include "item.h"
 #include "overworld.h"
 #include "field_screen_effect.h"
-#include "quest_log.h"
 #include "map_preview_screen.h"
 #include "fieldmap.h"
 #include "field_move.h"
@@ -55,11 +54,7 @@ extern u16 (*const gSpecialsEnd[])(void);
 extern const u8 *gStdScripts[];
 extern const u8 *gStdScriptsEnd[];
 
-static bool8 ScriptContext_NextCommandEndsScript(struct ScriptContext * ctx);
-static u8 ScriptContext_GetQuestLogInput(struct ScriptContext * ctx);
-
 static EWRAM_DATA ptrdiff_t sAddressOffset = 0; // For relative addressing in vgoto etc., used by saved scripts (e.g. Mystery Event)
-static EWRAM_DATA u8 sQuestLogWaitButtonPressTimer = 0;
 static EWRAM_DATA u16 sPauseCounter = 0;
 static EWRAM_DATA u16 sMovingNpcId = 0;
 static EWRAM_DATA u16 sMovingNpcMapGroup = 0;
@@ -68,7 +63,6 @@ static EWRAM_DATA u16 sFieldEffectScriptId = 0;
 
 static bool8 sIsScriptedWildDouble;
 
-COMMON_DATA struct ScriptContext * sQuestLogScriptContextPtr = NULL;
 COMMON_DATA u8 gSelectedObjectEvent = 0;
 
 // This is defined in here so the optimizer can't see its value when compiling
@@ -606,7 +600,6 @@ bool8 ScrCmd_additem(struct ScriptContext * ctx)
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 
     gSpecialVar_Result = AddBagItem(itemId, quantity);
-    TrySetObtainedItemQuestLogEvent(itemId);
     return FALSE;
 }
 
@@ -754,7 +747,6 @@ bool8 ScrCmd_setworldmapflag(struct ScriptContext * ctx)
     u16 value = ScriptReadHalfword(ctx);
     
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
-    QuestLog_RecordEnteredMap(value);
     MapPreview_SetFlag(value);
     return FALSE;
 }
@@ -1182,8 +1174,6 @@ bool8 ScrCmd_playbgm(struct ScriptContext * ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
 
-    if (QL_IS_PLAYBACK_STATE)
-        return FALSE;
     if (save == TRUE)
         Overworld_SetSavedMusic(songId);
     PlayNewMapMusic(songId);
@@ -1202,8 +1192,6 @@ bool8 ScrCmd_fadedefaultbgm(struct ScriptContext * ctx)
 {
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    if (QL_IS_PLAYBACK_STATE)
-        return FALSE;
     Overworld_ChangeMusicToDefault();
     return FALSE;
 }
@@ -1214,8 +1202,6 @@ bool8 ScrCmd_fadenewbgm(struct ScriptContext * ctx)
     
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
 
-    if (QL_IS_PLAYBACK_STATE)
-        return FALSE;
     Overworld_ChangeMusicTo(music);
     return FALSE;
 }
@@ -1226,8 +1212,8 @@ bool8 ScrCmd_fadeoutbgm(struct ScriptContext * ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
 
-    if (QL_IS_PLAYBACK_STATE)
-        return FALSE;
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
+
     if (speed != 0)
         FadeOutBGMTemporarily(4 * speed);
     else
@@ -1242,8 +1228,6 @@ bool8 ScrCmd_fadeinbgm(struct ScriptContext * ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
 
-    if (QL_IS_PLAYBACK_STATE)
-        return FALSE;
     if (speed != 0)
         FadeInBGM(4 * speed);
     else
@@ -1652,21 +1636,11 @@ bool8 ScrCmd_message(struct ScriptContext * ctx)
 
 bool8 ScrCmd_loadhelp(struct ScriptContext * ctx)
 {
-    const u8 *msg = (const u8 *)ScriptReadWord(ctx);
-
-    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-
-    if (msg == NULL)
-        msg = (const u8 *)ctx->data[0];
-    DrawHelpMessageWindowWithText(msg);
-    CopyWindowToVram(GetStartMenuWindowId(), COPYWIN_MAP);
     return FALSE;
 }
 
 bool8 ScrCmd_unloadhelp(struct ScriptContext * ctx)
 {
-    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-    DestroyHelpMessageWindow_();
     return FALSE;
 }
 
@@ -1704,96 +1678,13 @@ static bool8 WaitForAorBPress(void)
         return TRUE;
     if (JOY_NEW(B_BUTTON))
         return TRUE;
-
-    if (ScriptContext_NextCommandEndsScript(sQuestLogScriptContextPtr) == TRUE)
-    {
-        u8 qlogInput = ScriptContext_GetQuestLogInput(sQuestLogScriptContextPtr);
-        RegisterQuestLogInput(qlogInput);
-        if (qlogInput != QL_INPUT_OFF)
-        {
-            if (gQuestLogState != QL_STATE_PLAYBACK)
-            {
-                ClearMsgBoxCancelableState();
-                if (qlogInput != QL_INPUT_A && qlogInput != QL_INPUT_B)
-                    SetQuestLogInputIsDpadFlag();
-                else
-                {
-                    ClearQuestLogInput();
-                    ClearQuestLogInputIsDpadFlag();
-                }
-                return TRUE;
-            }
-        }
-    }
-    if (QL_GetPlaybackState() == QL_PLAYBACK_STATE_RUNNING || gQuestLogState == QL_STATE_PLAYBACK)
-    {
-        if (sQuestLogWaitButtonPressTimer == 120)
-            return TRUE;
-        else
-            sQuestLogWaitButtonPressTimer++;
-    }
-
     return FALSE;
-}
-
-static bool8 ScriptContext_NextCommandEndsScript(struct ScriptContext * ctx)
-{
-    const u8 * script = ctx->scriptPtr;
-    u8 nextCmd = *script;
-    if (nextCmd == 3) // return
-    {
-        script = ctx->stack[ctx->stackDepth - 1];
-        nextCmd = *script;
-    }
-    if (nextCmd < 0x6B || nextCmd > 0x6C) // releaseall or release
-        return FALSE;
-    else
-        return TRUE;
-}
-
-static u8 ScriptContext_GetQuestLogInput(struct ScriptContext * ctx)
-{
-    if (JOY_HELD(DPAD_UP) && gSpecialVar_Facing != DIR_NORTH)
-        return QL_INPUT_UP;
-
-    if (JOY_HELD(DPAD_DOWN) && gSpecialVar_Facing != DIR_SOUTH)
-        return QL_INPUT_DOWN;
-
-    if (JOY_HELD(DPAD_LEFT) && gSpecialVar_Facing != DIR_WEST)
-        return QL_INPUT_LEFT;
-
-    if (JOY_HELD(DPAD_RIGHT) && gSpecialVar_Facing != DIR_EAST)
-        return QL_INPUT_RIGHT;
-
-    if (JOY_NEW(L_BUTTON))
-        return QL_INPUT_L;
-
-    if (JOY_HELD(R_BUTTON))
-        return QL_INPUT_R;
-
-    if (JOY_HELD(START_BUTTON))
-        return QL_INPUT_START;
-
-    if (JOY_HELD(SELECT_BUTTON))
-        return QL_INPUT_SELECT;
-
-    if (JOY_NEW(A_BUTTON))
-        return QL_INPUT_A;
-
-    if (JOY_NEW(B_BUTTON))
-        return QL_INPUT_B;
-
-    return QL_INPUT_OFF;
 }
 
 bool8 ScrCmd_waitbuttonpress(struct ScriptContext * ctx)
 {
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    sQuestLogScriptContextPtr = ctx;
-
-    if (QL_GetPlaybackState() == QL_PLAYBACK_STATE_RUNNING || gQuestLogState == QL_STATE_PLAYBACK)
-        sQuestLogWaitButtonPressTimer = 0;
     SetupNativeScript(ctx, WaitForAorBPress);
     return TRUE;
 }
@@ -2253,6 +2144,11 @@ bool8 ScrCmd_bufferboxname(struct ScriptContext * ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_nop0x79(struct ScriptContext * ctx)
+{
+    return FALSE;
+}
+
 bool8 ScrCmd_giveegg(struct ScriptContext * ctx)
 {
     u16 species = VarGet(ScriptReadHalfword(ctx));
@@ -2382,7 +2278,7 @@ bool8 ScrCmd_showmoneybox(struct ScriptContext * ctx)
     u8 y = ScriptReadByte(ctx);
     u8 ignore = ScriptReadByte(ctx);
 
-    if (!ignore && QL_AvoidDisplay(QL_DestroyAbortedDisplay) != TRUE)
+    if (!ignore)
     {
         Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
@@ -2414,15 +2310,14 @@ bool8 ScrCmd_updatemoneybox(struct ScriptContext * ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_showcoinsbox(struct ScriptContext * ctx)
+bool8 ScrCmd_showcoinsbox(struct ScriptContext *ctx)
 {
     u8 x = ScriptReadByte(ctx);
     u8 y = ScriptReadByte(ctx);
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    if (QL_AvoidDisplay(QL_DestroyAbortedDisplay) != TRUE)
-        ShowCoinsWindow(GetCoins(), x, y);
+    ShowCoinsWindow(GetCoins(), x, y);
     return FALSE;
 }
 

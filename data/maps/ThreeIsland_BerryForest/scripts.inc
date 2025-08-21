@@ -17,13 +17,11 @@ ThreeIsland_BerryForest_EventScript_Lostelle::
 	applymovement LOCALID_BERRY_FOREST_LOSTELLE, ThreeIsland_BerryForest_Movement_LostelleLookAround
 	waitmovement 0
 	msgbox ThreeIsland_BerryForest_Text_HereItComesAgain
-	goto_if_questlog EventScript_ReleaseEnd
 	waitse
 	playmoncry SPECIES_HYPNO, CRY_MODE_ENCOUNTER
 	waitmoncry
 	setwildbattle SPECIES_HYPNO, 30
 	dowildbattle
-	special QuestLog_CutRecording
 	applymovement LOCALID_BERRY_FOREST_LOSTELLE, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox ThreeIsland_BerryForest_Text_ThankYouHaveThis

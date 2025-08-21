@@ -28,7 +28,6 @@
 #include "field_weather.h"
 #include "follower_npc.h"
 #include "graphics.h"
-#include "help_system.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
 #include "item.h"
@@ -42,8 +41,6 @@
 #include "party_menu.h"
 #include "pokeball.h"
 #include "pokedex.h"
-#include "pokemon.h"
-#include "quest_log.h"
 #include "random.h"
 #include "recorded_battle.h"
 #include "roamer.h"
@@ -494,24 +491,6 @@ void CB2_InitBattle(void)
     else
     {
         CB2_InitBattleInternal();
-        if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK)))
-        {
-            if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-            {
-                if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-                    SetHelpContext(HELPCONTEXT_TRAINER_BATTLE_DOUBLE);
-                else
-                    SetHelpContext(HELPCONTEXT_TRAINER_BATTLE_SINGLE);
-            }
-            else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
-            {
-                SetHelpContext(HELPCONTEXT_SAFARI_BATTLE);
-            }
-            else
-            {
-                SetHelpContext(HELPCONTEXT_WILD_BATTLE);
-            }
-        }
     }
 }
 
@@ -2321,7 +2300,6 @@ static void EndLinkBattleInSteps(void)
         if (!gPaletteFade.active)
         {
             SetMainCallback2(gMain.savedCallback);
-            TrySetQuestLogLinkBattleEvent();
             FreeMonSpritesGfx();
             FreeBattleSpritesData();
             FreeBattleResources();
@@ -5280,7 +5258,6 @@ static void HandleEndTurn_FinishBattle(void)
                 }
             }
         }
-        TrySetQuestLogBattleEvent();
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             ClearRematchStateByTrainerId();
         RecordedBattle_SetPlaybackFinished();

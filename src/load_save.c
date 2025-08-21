@@ -12,7 +12,6 @@
 #include "overworld.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
-#include "quest_log.h"
 #include "random.h"
 #include "save_location.h"
 #include "trainer_tower.h"
@@ -71,7 +70,6 @@ void ClearSav1(void)
 void SetSaveBlocksPointers(u16 offset)
 {
     struct SaveBlock1** sav1_LocalVar = &gSaveBlock1Ptr;
-    void *oldSave = (void *)gSaveBlock1Ptr;
 
     offset = (offset + Random()) & (SAVEBLOCK_MOVE_RANGE - 4);
 
@@ -80,7 +78,6 @@ void SetSaveBlocksPointers(u16 offset)
     gPokemonStoragePtr = (void *)(&gPokemonStorage) + offset;
 
     SetBagItemsPointers();
-    QL_AddASLROffset(oldSave);
 }
 
 void MoveSaveBlocks_ResetHeap(void)

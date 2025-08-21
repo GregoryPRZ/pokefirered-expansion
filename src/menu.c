@@ -4,11 +4,9 @@
 #include "field_specials.h"
 #include "field_weather.h"
 #include "graphics.h"
-#include "help_message.h"
 #include "menu.h"
 #include "menu_helpers.h"
 #include "pokemon_icon.h"
-#include "quest_log.h"
 #include "script.h"
 #include "strings.h"
 #include "text_window.h"
@@ -140,8 +138,7 @@ static const struct MenuInfoIcon sMenuInfoIcons[] =
 void InitStandardTextBoxWindows(void)
 {
     InitWindows(sStandardTextBox_WindowTemplates);
-    sStartMenuWindowId = WINDOW_NONE;;
-    MapNamePopupWindowIdSetDummy();
+    sStartMenuWindowId = WINDOW_NONE;
     InitPopupWindows();
 }
 
@@ -214,16 +211,8 @@ void AddTextPrinterWithCustomSpeedForMessage(bool8 allowSkippingDelayWithButtonP
 
 void LoadMessageBoxAndBorderGfx(void)
 {
-    if (gQuestLogState == QL_STATE_PLAYBACK)
-    {
-        gTextFlags.autoScroll = 1;
-        LoadQuestLogWindowTiles(0, DLG_WINDOW_BASE_TILE_NUM);
-    }
-    else
-    {
-        Menu_LoadStdPal();
-        LoadMessageBoxGfx(0, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM));
-    }
+    Menu_LoadStdPal();
+    LoadMessageBoxGfx(0, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM));
     LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(STD_WINDOW_PALETTE_NUM));
 }
 
@@ -252,8 +241,6 @@ void ClearDialogWindowAndFrame(u8 windowId, bool8 copyToVram)
     ClearWindowTilemap(windowId);
     if (copyToVram == TRUE)
         CopyWindowToVram(windowId, COPYWIN_FULL);
-    if (gQuestLogState == QL_STATE_PLAYBACK)
-        CommitQuestLogWindow1();
 }
 
 void ClearStdWindowAndFrame(u8 windowId, bool8 copyToVram)
@@ -284,7 +271,7 @@ static void WindowFunc_DrawStandardFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u
 
 static void WindowFunc_DrawDialogueFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 paletteNum)
 {
-    if (!IsMsgSignpost() || gQuestLogState == QL_STATE_PLAYBACK)
+    if (!IsMsgSignpost())
     {
         FillBgTilemapBufferRect(bg, DLG_WINDOW_BASE_TILE_NUM + 0, tilemapLeft - 2, tilemapTop - 1, 1, 1, DLG_WINDOW_PALETTE_NUM);
         FillBgTilemapBufferRect(bg, DLG_WINDOW_BASE_TILE_NUM + 1, tilemapLeft - 1, tilemapTop - 1, 1, 1, DLG_WINDOW_PALETTE_NUM);
@@ -361,15 +348,7 @@ void SetStandardWindowBorderStyle(u8 windowId, bool8 copyToVram)
 
 void LoadMessageBoxAndFrameGfx(u8 windowId, bool8 copyToVram)
 {
-    if (gQuestLogState == QL_STATE_PLAYBACK)
-    {
-        gTextFlags.autoScroll = 1;
-        LoadQuestLogWindowTiles(0, DLG_WINDOW_BASE_TILE_NUM);
-    }
-    else
-    {
-        LoadMessageBoxGfx(windowId, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM));
-    }
+    LoadMessageBoxGfx(windowId, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM));
     DrawDialogFrameWithCustomTileAndPalette(windowId, copyToVram, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM);
 }
 
@@ -1493,17 +1472,6 @@ void HBlankCB_DoublePopupWindow(void)
     {
         REG_BG0VOFS = 512 - offset;
     }
-}
-
-void DrawHelpMessageWindowWithText(const u8 * text)
-{
-    LoadHelpMessageWindowGfx(CreateHelpMessageWindow(), DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM));
-    PrintTextOnHelpMessageWindow(text, 2);
-}
-
-void DestroyHelpMessageWindow_(void)
-{
-    DestroyHelpMessageWindow(2);
 }
 
 void LoadSignPostWindowFrameGfx(void)

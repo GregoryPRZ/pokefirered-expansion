@@ -13,7 +13,6 @@
 #include "event_scripts.h"
 #include "script.h"
 #include "link.h"
-#include "quest_log.h"
 #include "safari_zone.h"
 #include "rtc.h"
 #include "constants/maps.h"
@@ -876,9 +875,6 @@ bool8 UpdateRepelCounter(void)
     bool32 isLure = IS_LAST_USED_LURE(repelLureVar);
 
     if (InUnionRoom() == TRUE)
-        return FALSE;
-
-    if (gQuestLogState == QL_STATE_PLAYBACK)
         return FALSE;
 
     if (steps != 0)

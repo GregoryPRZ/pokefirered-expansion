@@ -1,7 +1,6 @@
 #include "global.h"
 #include "crt0.h"
 #include "malloc.h"
-#include "help_system.h"
 #include "link.h"
 #include "link_rfu.h"
 #include "librfu.h"
@@ -11,7 +10,6 @@
 #include "scanline_effect.h"
 #include "overworld.h"
 #include "play_time.h"
-#include "quest_log.h"
 #include "random.h"
 #include "save_failed_screen.h"
 #include "dma3.h"
@@ -115,9 +113,6 @@ void AgbMain()
     InitHeap(gHeap, HEAP_SIZE);
 
     gSoftResetDisabled = FALSE;
-    gHelpSystemEnabled = FALSE;
-
-    SetNotInSaveFailedScreen();
 
     if (gFlashMemoryPresent != TRUE)
         SetMainCallback2(NULL);
@@ -192,25 +187,15 @@ static void InitMainCallbacks(void)
     SetMainCallback2(gInitialMainCB2);
     gSaveBlock2Ptr = &gSaveblock2.block;
     gPokemonStoragePtr = &gPokemonStorage.block;
-    gQuestLogPlaybackState = QL_PLAYBACK_STATE_STOPPED;
 }
 
 static void CallCallbacks(void)
 {
-#if !TESTING && DEBUG_BATTLE_MENU != TRUE // test framework not working with help system
-    if (!RunSaveFailedScreen() && !RunHelpSystemCallback())
-#else
-#if !TESTING
-    if (!RunSaveFailedScreen())
-#endif
-#endif
-    {
-        if (gMain.callback1)
-            gMain.callback1();
+    if (gMain.callback1)
+        gMain.callback1();
 
-        if (gMain.callback2)
-            gMain.callback2();
-    }
+    if (gMain.callback2)
+        gMain.callback2();
 }
 
 void SetMainCallback2(MainCallback callback)
@@ -464,6 +449,16 @@ void ClearTrainerTowerVBlankCounter(void)
 {
     gTrainerTowerVBlankCounter = NULL;
 }
+
+// void SetTrainerHillVBlankCounter(u32 *counter)
+// {
+//     gTrainerHillVBlankCounter = counter;
+// }
+
+// void ClearTrainerHillVBlankCounter(void)
+// {
+//     gTrainerHillVBlankCounter = NULL;
+// }
 
 void DoSoftReset(void)
 {

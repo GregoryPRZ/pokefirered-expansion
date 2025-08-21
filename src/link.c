@@ -9,7 +9,6 @@
 #include "decompress.h"
 #include "event_data.h"
 #include "graphics.h"
-#include "help_system.h"
 #include "item_menu.h"
 #include "librfu.h"
 #include "link.h"
@@ -18,7 +17,6 @@
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
-#include "quest_log.h"
 #include "random.h"
 #include "reload_save.h"
 #include "save.h"
@@ -209,9 +207,6 @@ static const u8 sLinkErrorTextColor[] = { 0x00, 0x01, 0x02 };
 
 bool8 IsWirelessAdapterConnected(void)
 {
-    if (QL_IS_PLAYBACK_STATE)
-        return FALSE;
-
     SetWirelessCommType1();
     InitRFUAPI();
     RfuSetIgnoreError(TRUE);
@@ -1221,7 +1216,6 @@ static void CB2_PrintErrorMessage(void)
         {
             if (JOY_NEW(A_BUTTON))
             {
-                HelpSystem_Enable();
                 PlaySE(SE_PIN);
                 gWirelessCommType = 0;
                 sLinkErrorBuffer.disconnected = 0;
@@ -1232,7 +1226,6 @@ static void CB2_PrintErrorMessage(void)
         {
             if (JOY_NEW(A_BUTTON))
             {
-                HelpSystem_Enable();
                 rfu_REQ_stopMode();
                 rfu_waitREQComplete();
                 DoSoftReset();

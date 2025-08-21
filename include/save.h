@@ -33,7 +33,7 @@
 
 #define SAVE_STATUS_EMPTY    0
 #define SAVE_STATUS_OK       1
-#define SAVE_STATUS_INVALID  2
+#define SAVE_STATUS_CORRUPT  2
 #define SAVE_STATUS_NO_FLASH 4
 #define SAVE_STATUS_ERROR    0xFF
 

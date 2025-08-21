@@ -1,6 +1,5 @@
 #include "global.h"
 #include "gflib.h"
-#include "quest_log.h"
 #include "region_map.h"
 #include "menu.h"
 #include "field_fadetransition.h"
@@ -337,7 +336,7 @@ static u8 GetMapPreviewScreenIdx(u8 mapsec)
     return MPS_COUNT;
 }
 
-bool8 MapHasPreviewScreen(u8 mapsec, u8 type)
+bool32 MapHasPreviewScreen(u8 mapsec, u8 type)
 {
     u8 idx;
 
@@ -356,18 +355,6 @@ bool8 MapHasPreviewScreen(u8 mapsec, u8 type)
     else
     {
         return FALSE;
-    }
-}
-
-bool32 MapHasPreviewScreen_HandleQLState2(u8 mapsec, u8 type)
-{
-    if (gQuestLogState == QL_STATE_PLAYBACK)
-    {
-        return FALSE;
-    }
-    else
-    {
-        return MapHasPreviewScreen(mapsec, type);
     }
 }
 

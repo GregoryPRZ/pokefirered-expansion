@@ -27,7 +27,6 @@
 #include "metatile_behavior.h"
 #include "overworld.h"
 #include "party_menu.h"
-#include "quest_log.h"
 #include "region_map.h"
 #include "script.h"
 #include "strings.h"
@@ -411,7 +410,6 @@ void ItemUseOutOfBattle_CoinCase(u8 taskId)
 {
     ConvertIntToDecimalStringN(gStringVar1, GetCoins(), STR_CONV_MODE_LEFT_ALIGN, 4);
     StringExpandPlaceholders(gStringVar4, gText_CoinCase);
-    ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
     if (gTasks[taskId].tIsFieldUse == FALSE)
         DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
     else
@@ -428,7 +426,6 @@ void ItemUseOutOfBattle_PowderJar(u8 taskId)
 {
     ConvertIntToDecimalStringN(gStringVar1, GetBerryPowder(), STR_CONV_MODE_LEFT_ALIGN, 5);
     StringExpandPlaceholders(gStringVar4, gText_PowderQty);
-    ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
     if (gTasks[taskId].tIsFieldUse == FALSE)
         DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
     else
@@ -495,7 +492,6 @@ void ItemUseOutOfBattle_PokeFlute(u8 taskId)
 
     if (wokeSomeoneUp)
     {
-        ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
         if (gTasks[taskId].tIsFieldUse == FALSE)
             DisplayItemMessage(taskId, FONT_NORMAL, gText_PlayedPokeFlute, Task_PlayPokeFlute);
         else
@@ -559,7 +555,6 @@ void ItemUseOutOfBattle_BerryPouch(u8 taskId)
 
 void ItemUseOutOfBattle_TeachyTv(u8 taskId)
 {
-    ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
     if (gTasks[taskId].tIsFieldUse == FALSE)
     {
         ItemMenu_SetExitCallback(InitTeachyTvFromBag);
@@ -590,7 +585,6 @@ void ItemUseOutOfBattle_TownMap(u8 taskId)
 
 void ItemUseOutOfBattle_FameChecker(u8 taskId)
 {
-    ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
     if (gTasks[taskId].tIsFieldUse == FALSE)
     {
         ItemMenu_SetExitCallback(UseFameCheckerFromBag);
@@ -728,7 +722,6 @@ static void Task_UseRepel(u8 taskId)
 {
     if (!IsSEPlaying())
     {
-        ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
         VarSet(VAR_REPEL_STEP_COUNT, GetItemHoldEffectParam(gSpecialVar_ItemId));
     #if VAR_LAST_REPEL_LURE_USED != 0
         VarSet(VAR_LAST_REPEL_LURE_USED, gSpecialVar_ItemId);
@@ -795,7 +788,6 @@ static void RemoveUsedItem(void)
 
 void ItemUseOutOfBattle_BlackWhiteFlute(u8 taskId)
 {
-    ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
     if (gSpecialVar_ItemId == ITEM_WHITE_FLUTE)
     {
         FlagSet(FLAG_SYS_WHITE_FLUTE_ACTIVE);
@@ -837,7 +829,6 @@ void ItemUseOutOfBattle_EscapeRope(u8 taskId)
 {
     if (CanUseEscapeRopeOnCurrMap() == TRUE)
     {
-        ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, gMapHeader.regionMapSectionId);
         sItemUseOnFieldCB = ItemUseOnFieldCB_EscapeRope;
         SetUpItemUseOnFieldCallback(taskId);
     }
@@ -1177,20 +1168,6 @@ void ItemUseOutOfBattle_CannotUse(u8 taskId)
     }
     else
         PrintNotTheTimeToUseThat(taskId, gTasks[taskId].data[3]);
-}
-
-void ItemUse_SetQuestLogEvent(u8 eventId, struct Pokemon *pokemon, u16 itemId, u16 param)
-{
-    struct QuestLogEvent_Item *data = Alloc(sizeof(*data));
-
-    data->itemId = itemId;
-    data->itemParam = param;
-    if (pokemon != NULL)
-        data->species = GetMonData(pokemon, MON_DATA_SPECIES_OR_EGG);
-    else
-        data->species = 0xFFFF;
-    SetQuestLogEvent(eventId, (void *)data);
-    Free(data);
 }
 
 #undef tUsingRegisteredKeyItem

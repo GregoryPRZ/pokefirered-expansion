@@ -9,7 +9,7 @@
 #include "tm_case.h"
 #include "berry_pouch.h"
 #include "clock.h"
-#include "quest_log.h"
+#include "field_specials.h"
 #include "wild_encounter.h"
 #include "event_data.h"
 #include "mail.h"
@@ -105,7 +105,6 @@ void ResetMenuAndMonGlobals(void)
     ResetBagScrollPositions();
     ResetTMCaseCursorPos();
     BerryPouch_CursorResetToTop();
-    ResetQuestLog();
     SeedWildEncounterRng(Random());
     ResetSpecialVars();
 }
@@ -114,7 +113,7 @@ void NewGameInitData(void)
 {
     u8 rivalName[PLAYER_NAME_LENGTH + 1];
     
-    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_INVALID)
+    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
         RtcReset();
 
     StringCopy(rivalName, gSaveBlock1Ptr->rivalName);

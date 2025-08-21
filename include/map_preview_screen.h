@@ -51,10 +51,9 @@ struct MapPreviewScreen
 u16 MapPreview_CreateMapNameWindow(u8 id);
 void MapPreview_SetFlag(u16 a0);
 u16 MapPreview_GetDuration(u8 id);
-bool8 MapHasPreviewScreen(u8 mapsec, u8 type);
+bool32 MapHasPreviewScreen(u8 mapsec, u8 type);
 bool32 ForestMapPreviewScreenIsRunning(void);
 const struct MapPreviewScreen * GetDungeonMapPreviewScreenInfo(u8 mapsec);
-bool32 MapHasPreviewScreen_HandleQLState2(u8 mapsec, u8 type);
 void MapPreview_InitBgs(void);
 void MapPreview_LoadGfx(u8 mapsec);
 bool32 MapPreview_IsGfxLoadFinished(void);

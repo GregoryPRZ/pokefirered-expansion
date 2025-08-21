@@ -3,7 +3,6 @@
 #include "fieldmap.h"
 #include "menu.h"
 #include "overworld.h"
-#include "quest_log.h"
 #include "rtc.h"
 #include "script.h"
 
@@ -20,7 +19,6 @@ EWRAM_DATA u16 ALIGNED(4) sBackupMapData[VIRTUAL_MAP_SIZE] = {0};
 EWRAM_DATA struct MapHeader gMapHeader = {0};
 EWRAM_DATA struct Camera gCamera = {0};
 static EWRAM_DATA struct ConnectionFlags gMapConnectionFlags = {0};
-EWRAM_DATA u8 gGlobalFieldTintMode = QL_TINT_NONE;
 
 static const struct ConnectionFlags sDummyConnectionFlags = {};
 
@@ -842,50 +840,6 @@ static void CopyTilesetToVramUsingHeap(struct Tileset const *tileset, u16 numTil
     }
 }
 
-static void ApplyGlobalTintToPaletteEntries(u16 offset, u16 size)
-{
-    switch (gGlobalFieldTintMode)
-    {
-    case QL_TINT_NONE:
-        return;
-    case QL_TINT_GRAYSCALE:
-        TintPalette_GrayScale(&gPlttBufferUnfaded[offset], size);
-        break;
-    case QL_TINT_SEPIA:
-        TintPalette_SepiaTone(&gPlttBufferUnfaded[offset], size);
-        break;
-    case QL_TINT_BACKUP_GRAYSCALE:
-        QuestLog_BackUpPalette(offset, size);
-        TintPalette_GrayScale(&gPlttBufferUnfaded[offset], size);
-        break;
-    default:
-        return;
-    }
-    CpuCopy16(&gPlttBufferUnfaded[offset], &gPlttBufferFaded[offset], PLTT_SIZEOF(size));
-}
-
-void ApplyGlobalTintToPaletteSlot(u8 slot, u8 count)
-{
-    switch (gGlobalFieldTintMode)
-    {
-    case QL_TINT_NONE:
-        return;
-    case QL_TINT_GRAYSCALE:
-        TintPalette_GrayScale(&gPlttBufferUnfaded[BG_PLTT_ID(slot)], count * 16);
-        break;
-    case QL_TINT_SEPIA:
-        TintPalette_SepiaTone(&gPlttBufferUnfaded[BG_PLTT_ID(slot)], count * 16);
-        break;
-    case QL_TINT_BACKUP_GRAYSCALE:
-        QuestLog_BackUpPalette(BG_PLTT_ID(slot), count * 16);
-        TintPalette_GrayScale(&gPlttBufferUnfaded[BG_PLTT_ID(slot)], count * 16);
-        break;
-    default:
-        return;
-    }
-    CpuFastCopy(&gPlttBufferUnfaded[BG_PLTT_ID(slot)], &gPlttBufferFaded[BG_PLTT_ID(slot)], count * PLTT_SIZE_4BPP);
-}
-
 static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u16 size, bool8 skipFaded)
 {
     u32 low = 0;
@@ -901,7 +855,6 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
             else
                 LoadPaletteFast(tileset->palettes, destOffset, size);
             gPlttBufferFaded[destOffset] = gPlttBufferUnfaded[destOffset] = RGB_BLACK; // why does it have to be black?
-            ApplyGlobalTintToPaletteEntries(destOffset + 1, (size - 2) >> 1);
             low = 0;
             high = NUM_PALS_IN_PRIMARY;
         }
@@ -913,14 +866,30 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
                 CpuCopy16(tileset->palettes[NUM_PALS_IN_PRIMARY], &gPlttBufferUnfaded[destOffset], size);
             else
                 LoadPaletteFast(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
-            ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
             low = NUM_PALS_IN_PRIMARY;
             high = NUM_PALS_TOTAL;
         }
         else
         {
             LoadPalette((const u32 *)tileset->palettes, destOffset, size);
-            ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
+        }
+        // convert legacy light palette system to current
+        if (tileset->lightPalettes)
+        {
+            u32 i, j, color;
+            for (i = low; i < high; i++)
+            {
+                if (tileset->lightPalettes & (1 << (i - low))) // Mark light colors
+                {
+                    for (j = 1, color = gPlttBufferUnfaded[PLTT_ID(i)]; j < 16 && color; j++, color >>= 1)
+                    {
+                        if (color & 1)
+                            gPlttBufferFaded[PLTT_ID(i)+j] = gPlttBufferUnfaded[PLTT_ID(i)+j] |= RGB_ALPHA;
+                    }
+                    if (tileset->customLightColor & (1 << (i - low))) // Copy old custom light color to index 0
+                        gPlttBufferFaded[PLTT_ID(i)] = gPlttBufferUnfaded[PLTT_ID(i)] = gPlttBufferUnfaded[PLTT_ID(i) + 15] | RGB_ALPHA;
+                }
+            }
         }
         // convert legacy light palette system to current
         if (tileset->lightPalettes)
