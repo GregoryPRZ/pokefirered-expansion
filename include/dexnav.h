@@ -71,6 +71,7 @@ void ResetDexNavSearch(void);
 bool8 TryFindHiddenPokemon(void);
 u32 CalculateDexNavShinyRolls(void);
 void IncrementDexNavChain(void);
+void DexNav_OpenGui(MainCallback callback);
 
 extern u16 gDexNavSpecies;
 

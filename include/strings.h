@@ -87,6 +87,7 @@ extern const u8 gText_PkmnFainted_FldPsn[];
 extern const u8 gText_Coins[];
 extern const u8 gText_EggNickname[];
 extern const u8 gText_MenuPokemon[];
+extern const u8 gText_SafariBallStock[];
 
 extern const u8 gOtherText_Use[];
 extern const u8 gOtherText_Toss[];

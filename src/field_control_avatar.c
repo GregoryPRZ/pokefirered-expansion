@@ -14,6 +14,7 @@
 #include "field_player_avatar.h"
 #include "field_poison.h"
 #include "field_specials.h"
+#include "heat_start_menu.h"
 #include "item_menu.h"
 #include "link.h"
 #include "metatile_behavior.h"
@@ -259,7 +260,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         gFieldInputRecord.pressedStartButton = TRUE;
         FlagSet(FLAG_OPENED_START_MENU);
         PlaySE(SE_WIN_OPEN);
-        ShowStartMenu();
+        HeatStartMenu_Init();
         return TRUE;
     }
     

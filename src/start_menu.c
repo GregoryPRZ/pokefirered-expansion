@@ -471,10 +471,13 @@ static void OpenStartMenuWithFollowupFunc(TaskFunc func)
     SetTaskFuncWithFollowupFunc(taskId, task50_startmenu, func);
 }
 
+#include "heat_start_menu.h"
+
 static bool8 FieldCB2_DrawStartMenu(void)
 {
-    if (!DoDrawStartMenu())
-        return FALSE;
+    //if (!DoDrawStartMenu())
+    //    return FALSE;
+    HeatStartMenu_Init();
     FadeTransition_FadeInOnReturnToStartMenu();
     return TRUE;
 }

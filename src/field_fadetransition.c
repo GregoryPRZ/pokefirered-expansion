@@ -474,7 +474,7 @@ static void Task_WaitFadeAndCreateStartMenuTask(u8 taskId)
 void FadeTransition_FadeInOnReturnToStartMenu(void)
 {
     FadeInFromBlack();
-    CreateTask(Task_WaitFadeAndCreateStartMenuTask, 80);
+    //CreateTask(Task_WaitFadeAndCreateStartMenuTask, 80);
     LockPlayerFieldControls();
 }
 

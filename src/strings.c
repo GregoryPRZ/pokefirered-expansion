@@ -1376,3 +1376,5 @@ const u8 gText_SpDef[] = _("SP. DEF");
 const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
 const u8 gText_CannotSendMonToBoxHM[] = _("Cannot send that mon to the box,\nbecause it knows a HM move.{PAUSE_UNTIL_PRESS}");
+
+const u8 gText_SafariBallStock[] = _("Safari Balls\nStock: {STR_VAR_1}");
