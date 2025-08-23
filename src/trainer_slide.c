@@ -52,10 +52,135 @@ static bool32 ShouldRunTrainerSlideLastLowHp(u32 firstId, u32 lastId, u32 battle
 static void SetTrainerSlideParamters(u32 battler, u32* firstId, u32* lastId, u32* trainerId, u32* retValue);
 static bool32 IsSlideInitalizedOrPlayed(enum TrainerSlideType slideId);
 
+static const u8 sText_BrockLastSwitchIn[] = _("Well done! But it's not over yet!\p");
+static const u8 sText_MistyLastSwitchIn[] = _("My last Pokémon will sink you down!\p");
+static const u8 sText_SurgeLastSwitchIn[] = _("Hahaha! You're tough, kid!\p");
+static const u8 sText_ErikaLastSwitchIn[] = _("Beautiful flowers fade one day...\p");
+static const u8 sText_KogaLastSwitchIn[] = _("Prepare for my last technique!\p");
+static const u8 sText_SabrinaLastSwitchIn[] = _("I didn't foresee this situation.\p");
+static const u8 sText_BlaineLastSwitchIn[] = _("Fwhahaha! I'm all burned up!\p");
+static const u8 sText_GiovanniLastSwitchIn[] = _("Impossible... Why this keep happening!\p");
+
+static const u8 sText_LoreleiLastSwitchIn[] = _("It's going to be a cold shower!\p");
+static const u8 sText_BrunoLastSwitchIn[] = _("Don't claim victory too fast!\p");
+static const u8 sText_AgathaLastSwitchIn[] = _("Hehehe... Interesting...\p");
+static const u8 sText_LanceLastSwitchIn[] = _("Am I losing? It can't be...\p");
+
+static const u8 sText_BlueLastSwitchIn[] = _("What! Impossible! I'm the best trainer!\p");
+
 static const u8* const sTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][TRAINER_SLIDE_COUNT] =
 {
     [DIFFICULTY_NORMAL] =
     {
+        [TRAINER_LEADER_BROCK] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BrockLastSwitchIn,
+        },
+
+        [TRAINER_LEADER_MISTY] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_MistyLastSwitchIn,
+        },
+
+        [TRAINER_LEADER_LT_SURGE] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_SurgeLastSwitchIn,
+        },
+
+        [TRAINER_LEADER_ERIKA] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_ErikaLastSwitchIn,
+        },
+
+        [TRAINER_LEADER_KOGA] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_KogaLastSwitchIn,
+        },
+
+        [TRAINER_LEADER_SABRINA] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_SabrinaLastSwitchIn,
+        },
+
+        [TRAINER_LEADER_BLAINE] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BlaineLastSwitchIn,
+        },
+
+        [TRAINER_LEADER_GIOVANNI] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_GiovanniLastSwitchIn,
+        },
+
+        [TRAINER_ELITE_FOUR_LORELEI] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_LoreleiLastSwitchIn,
+        },
+
+        [TRAINER_ELITE_FOUR_LORELEI_2] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_LoreleiLastSwitchIn,
+        },
+
+        [TRAINER_ELITE_FOUR_BRUNO] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BrunoLastSwitchIn,
+        },
+
+        [TRAINER_ELITE_FOUR_BRUNO_2] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BrunoLastSwitchIn,
+        },
+
+        [TRAINER_ELITE_FOUR_AGATHA] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_AgathaLastSwitchIn,
+        },
+
+        [TRAINER_ELITE_FOUR_AGATHA_2] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_AgathaLastSwitchIn,
+        },
+
+        [TRAINER_ELITE_FOUR_LANCE_2] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_LanceLastSwitchIn,
+        },
+
+        [TRAINER_ELITE_FOUR_LANCE] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_LanceLastSwitchIn,
+        },
+
+        [TRAINER_CHAMPION_FIRST_BULBASAUR] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BlueLastSwitchIn,
+        },
+
+        [TRAINER_CHAMPION_FIRST_CHARMANDER] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BlueLastSwitchIn,
+        },
+
+        [TRAINER_CHAMPION_FIRST_SQUIRTLE] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BlueLastSwitchIn,
+        },
+
+        [TRAINER_CHAMPION_REMATCH_BULBASAUR] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BlueLastSwitchIn,
+        },
+
+        [TRAINER_CHAMPION_REMATCH_CHARMANDER] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BlueLastSwitchIn,
+        },
+
+        [TRAINER_CHAMPION_REMATCH_SQUIRTLE] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = sText_BlueLastSwitchIn,
+        },
     },
 };
 

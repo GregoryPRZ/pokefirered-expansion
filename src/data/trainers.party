@@ -6356,6 +6356,7 @@ Gender: Male
 Music: Aqua
 Double Battle: No
 AI: Check Bad Move
+Mugshot: Blue
 
 Onix
 Level: 25
@@ -8414,6 +8415,7 @@ Gender: Male
 Music: Male
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+Mugshot: Yellow
 
 Geodude
 Level: 12
@@ -8437,6 +8439,7 @@ Music: Female
 Items: Super Potion
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+Mugshot: Blue
 
 Staryu
 Level: 18
@@ -8463,6 +8466,7 @@ Music: Male
 Items: Super Potion / Full Heal
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+Mugshot: Yellow
 
 Voltorb
 Level: 21
@@ -8497,6 +8501,7 @@ Music: Female
 Items: Hyper Potion / Full Heal
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+Mugshot: Green
 
 Victreebel
 Level: 29
@@ -8531,6 +8536,7 @@ Music: Male
 Items: Hyper Potion / Hyper Potion / Full Heal
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+Mugshot: Purple
 
 Koffing
 Level: 37
@@ -8573,6 +8579,7 @@ Music: Male
 Items: Hyper Potion / Hyper Potion / Full Heal
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+Mugshot: Yellow
 
 Growlithe
 Level: 42
@@ -8615,6 +8622,7 @@ Music: Female
 Items: Hyper Potion / Hyper Potion / Full Heal
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+Mugshot: Pink
 
 Kadabra
 Level: 38
